@@ -1,6 +1,5 @@
 import React from 'react';
 import {Widgets, Operators} from 'react-awesome-query-builder';
-
 const {
     TextWidget,
     NumberWidget,
@@ -17,380 +16,187 @@ import moment from 'moment';
 import en_US from 'antd/lib/locale-provider/en_US';
 import ru_RU from 'antd/lib/locale-provider/ru_RU';
 
-const staticList = {
-    location: {
-        continent: {
-            continent1: "Continent 1",
-            continent2: "Continent 2",
-            continent3: "Continent 3",
-        },
-        country: {
-            country1: "Country 1",
-            country2: "Country 2",
-            country3: "Country 3",
-        },
-        region: {
-            region1: "Region 1",
-            region2: "Region 2",
-        },
-        timezone: {
-            timezone1: "Timezone 1",
-            timezone2: "Timezone 2",
-        },
-    },
-    device: {
-        type: {
-            value1: "Value 1",
-            value2: "Value 2",
-            value3: "Value 3",
-        },
-        brand: {
-            value1: "Value 1",
-            value2: "Value 2",
-            value3: "Value 3",
-        },
-        model: {
-            value1: "Value 1",
-            value2: "Value 2",
-            value3: "Value 3",
-        },
-        name: {
-            value1: "Value 1",
-            value2: "Value 2",
-            value3: "Value 3",
-        },
-        manufacturer: {
-            value1: "Value 1",
-            value2: "Value 2",
-            value3: "Value 3",
-        },
-        os: {
-            value1: "Value 1",
-            value2: "Value 2",
-            value3: "Value 3",
-        },
-        os_version: {
-            value1: "Value 1",
-            value2: "Value 2",
-            value3: "Value 3",
-        },
-        browser: {
-            value1: "Value 1",
-            value2: "Value 2",
-            value3: "Value 3",
-        },
-        browser_language: {
-            value1: "Value 1",
-            value2: "Value 2",
-            value3: "Value 3",
-        },
-        browser_version: {
-            value1: "Value 1",
-            value2: "Value 2",
-            value3: "Value 3",
-        },
-        display_width: {
-            value1: "Value 1",
-            value2: "Value 2",
-            value3: "Value 3",
-        },
-        display_height: {
-            value1: "Value 1",
-            value2: "Value 2",
-            value3: "Value 3",
-        },
-    },
-    connection: {
-        type: {
-            value1: "Value 1",
-            value2: "Value 2",
-            value3: "Value 3",
-        }
-    }
-};
-
 export default {
     conjunctions: {
         AND: {
             label: 'AND',
             formatConj: (children, conj, not, isForDisplay) => {
                 return children.size > 1 ?
-                    (not ? "NOT " : "") + '(' + children.join(' ' + (isForDisplay ? "AND" : "&&") + ' ') + ')'
-                    : (not ? "NOT (" : "") + children.first() + (not ? ")" : "");
+                    (not ? "NOT " : "") + '(' + children.join(' '+ (isForDisplay ? "AND" : "&&") +' ') + ')'
+                  : (not ? "NOT (" : "") + children.first() + (not ? ")" : "");
             },
         },
         OR: {
             label: 'OR',
             formatConj: (children, conj, not, isForDisplay) => {
                 return children.size > 1 ?
-                    (not ? "NOT " : "") + '(' + children.join(' ' + (isForDisplay ? "OR" : "||") + ' ') + ')'
-                    : (not ? "NOT (" : "") + children.first() + (not ? ")" : "");
+                    (not ? "NOT " : "") + '(' + children.join(' '+ (isForDisplay ? "OR" : "||") +' ') + ')'
+                  : (not ? "NOT (" : "") + children.first() + (not ? ")" : "");
             },
         },
     },
     fields: {
-        location: {
-            label: 'Location',
+        members: {
+            label: 'Members',
             type: '!struct',
             subfields: {
-                continent: {
-                    label: 'Continent',
-                    type: 'select',
-                    listValues: staticList.location.continent,
+                subname: {
+                    //label: 'Subname', //'subname' should be used instead
+                    label2: 'MemberName', //only for menu's toggler
+                    type: 'number',
+                    tableName: 't1',
+                    operators: ['equal'],
                 },
-                country: {
-                    label: 'Country',
-                    type: 'select',
-                    listValues: staticList.location.country,
-                },
-                city: {
-                    label: 'City',
+                prox1: {
+                    label: 'prox1',
                     type: 'text',
-                },
-                region: {
-                    label: 'Region',
-                    type: 'select',
-                    listValues: staticList.location.region,
-                },
-                timezone: {
-                    label: 'Timezone',
-                    type: 'select',
-                    listValues: staticList.location.timezone,
+                    operators: ['proximity'],
                 },
             }
         },
-        device: {
-            label: 'Device',
-            type: '!struct',
-            subfields: {
-                type: {
-                    label: 'Type',
-                    type: 'select',
-                    listValues: staticList.device.type,
-                },
-                brand: {
-                    label: 'Brand',
-                    type: 'select',
-                    listValues: staticList.device.brand,
-                },
-                model: {
-                    label: 'Model',
-                    type: 'select',
-                    listValues: staticList.device.model,
-                },
-                name: {
-                    label: 'Name',
-                    type: 'select',
-                    listValues: staticList.device.name,
-                },
-                manufacturer: {
-                    label: 'Manufacturer',
-                    type: 'select',
-                    listValues: staticList.device.manufacturer,
-                },
-                os: {
-                    label: 'OS',
-                    type: 'select',
-                    listValues: staticList.device.os,
-                },
-                os_version: {
-                    label: 'OS Version',
-                    type: 'select',
-                    listValues: staticList.device.os_version,
-                },
-                browser: {
-                    label: 'Browser',
-                    type: 'select',
-                    listValues: staticList.device.browser,
-                },
-                browser_language: {
-                    label: 'Browser Language',
-                    type: 'select',
-                    listValues: staticList.device.browser_language,
-                },
-                browser_version: {
-                    label: 'Browser Version',
-                    type: 'select',
-                    listValues: staticList.device.browser_version,
-                },
-                display_width: {
-                    label: 'Display Width',
-                    type: 'select',
-                    listValues: staticList.device.display_width,
-                },
-                display_height: {
-                    label: 'Display Height',
-                    type: 'select',
-                    listValues: staticList.device.display_height,
-                },
-            }
+        prox2: {
+            label: 'prox2',
+            type: 'text',
+            operators: ['proximity'],
+            defaultOperator: 'not_equal', //will not be used
         },
-        connection: {
-            label: 'Connection',
-            type: '!struct',
-            subfields: {
-                type: {
-                    label: 'type',
-                    type: 'select',
-                    listValues: staticList.connection.type,
+        name2: {
+            label: 'Name 2',
+            type: 'text',
+            operators: ['equal', 'not_equal'],
+            defaultOperator: 'not_equal',
+            mainWidgetProps: {
+                formatValue: (val, fieldDef, wgtDef, isForDisplay) => ("__"+JSON.stringify(val)),
+                valueLabel: "Name2",
+                valuePlaceholder: "Enter name2",
+                validateValue: (val, fieldDef) => {
+                    return (val != 'test2');
                 },
-                ip: {
-                    label: 'IP',
-                    type: 'text',
-                },
-                user_agent: {
-                    label: 'User Agent',
-                    type: 'text',
-                },
-                referrer: {
-                    label: 'Referrer',
-                    type: 'text',
-                },
-                current_url: {
-                    label: 'Current URL',
-                    type: 'text',
-                },
-                isp: {
-                    label: 'ISP',
-                    type: 'text',
-                },
-                mobile_carrier: {
-                    label: 'Mobile Carrier',
-                    type: 'text',
-                },
-            }
+            },
         },
-        conversion_cap: {
-            label: 'Conversion Cap',
-            type: '!struct',
-            subfields: {
-                current_visitor: {
-                    label: 'Current Visitor',
-                    type: 'number',
-                },
-                globally_on_offer: {
-                    label: 'Globally on Offer',
-                    type: 'number',
-                },
-            }
+        num: {
+            label: 'Number',
+            type: 'number',
+            fieldSettings: {
+                min: -1,
+                max: 5
+            },
         },
-        quantity: {
-            label: 'Quantity',
-            type: '!struct',
-            subfields: {
-                number_of_visitors: {
-                    label: 'Number of Visitors',
-                    type: 'number',
-                },
-                number_of_visitors_today: {
-                    label: 'Number of Visitors Today',
-                    type: 'number',
-                },
-
-            }
+        date: {
+            label: 'Date',
+            type: 'date',
+            operators: ['greater', 'less'],
+            defaultOperator: 'less',
         },
         time: {
             label: 'Time',
-            type: '!struct',
-            subfields: {
-                date: {
-                    label: 'Date',
-                    type: 'date',
-                    operators: ['greater', 'less'],
-                    defaultOperator: 'less',
-                },
+            type: 'time',
+            operators: ['greater_or_equal', 'less_or_equal', 'between'],
+            defaultOperator: 'between',
+            widgets: {
                 time: {
-                    label: 'Time',
-                    type: 'time',
-                    operators: ['greater_or_equal', 'less_or_equal', 'between'],
-                    defaultOperator: 'between',
-                    widgets: {
-                        time: {
-                            opProps: {
-                                between: {
-                                    valueLabels: [
-                                        'Time from',
-                                        'Time to'
-                                    ],
-                                },
-                            },
-                            widgetProps: {
-                                timeFormat: 'h:mm:ss A',
-                                use12Hours: true,
-                            },
+                    opProps: {
+                        between: {
+                            valueLabels: [
+                                'Time from',
+                                'Time to'
+                            ],
                         },
                     },
-                },
-                datetime2: {
-                    label: 'Date and Time',
-                    type: 'datetime',
-                    valueSources: ['value']
-                },
-
-            }
-        },
-        tracking_fields: {
-            label: 'Tracking Fields',
-            type: '!struct',
-            subfields: {
-                custom_field_1: {
-                    label: 'Custom Field 1',
-                    type: 'select',
-                    listValues: {
-                        value1: "value1",
-                        value2: "value2",
-                        value3: "value3",
-                    },
-                },
-                custom_field_2: {
-                    label: 'Custom Field 2',
-                    type: 'select',
-                    listValues: {
-                        value1: "value1",
-                        value2: "value2",
-                        value3: "value3",
-                    },
-                },
-            }
-        },
-        others: {
-            label: 'Others',
-            type: '!struct',
-            subfields: {
-                visitor_tags: {
-                    label: 'Visitors Tags',
-                    type: 'select',
-                    listValues: {
-                        value1: "value1",
-                        value2: "value2",
-                        value3: "value3",
-                    },
-                },
-                traffic_source: {
-                    label: 'Traffic Source',
-                    type: 'select',
-                    listValues: {
-                        value1: "value1",
-                        value2: "value2",
-                        value3: "value3",
+                    widgetProps: {
+                        timeFormat: 'h:mm:ss A',
+                        use12Hours: true,
                     },
                 },
             },
+        },
+        datetime: {
+            label: 'DateTime',
+            type: 'datetime',
+            valueSources: ['field']
+        },
+        datetime2: {
+            label: 'DateTime2',
+            type: 'datetime',
+            valueSources: ['value']
+        },
+        color: {
+            label: 'Color',
+            type: 'select',
+            operators: [
+                'select_equals',
+                'select_not_equals',
+                'select_any_in',
+                'select_not_any_in'
+            ],
+            listValues: {
+                yellow: 'Yellow',
+                green: 'Green',
+                orange: 'Orange'
+            },
+        },
+        color2: {
+            label: 'Color2',
+            type: 'select',
+            defaultOperator: 'select_not_any_in',
+            operators: [
+                'select_not_equals',
+                'select_not_any_in'
+            ],
+            listValues: {
+                yellow: 'Yellow',
+                green: 'Green',
+                orange: 'Orange',
+                purple: 'Purple'
+            },
+        },
+        color3: {
+            label: 'Color3',
+            type: 'select',
+            defaultOperator: 'select_not_equals',
+            operators: [
+                'select_not_equals',
+                'select_not_any_in'
+            ],
+            listValues: {
+                yellow: 'Yellow',
+                green: 'Green',
+                orange: 'Orange',
+                purple: 'Purple'
+            },
+        },
+        multicolor: {
+            label: 'Colors',
+            type: 'multiselect',
+            listValues: {
+                yellow: 'Yellow',
+                green: 'Green',
+                orange: 'Orange'
+            },
+        },
+        stock: {
+            label: 'In stock',
+            type: 'boolean',
+        },
+        expecting: {
+            label: 'Expecting',
+            type: 'boolean',
         },
     },
     types: {
         text: {
             widgets: {
                 text: {
-                    defaultOperator: 'equal',
+                    defaultOperator: 'is_empty',
                     operators: [
                         'equal',
                         'not_equal',
                         "is_empty",
                         "is_not_empty",
+                        'proximity'
                     ],
                     widgetProps: {
-                        formatValue: (val, fieldDef, wgtDef, isForDisplay) => ("_" + JSON.stringify(val)),
+                        formatValue: (val, fieldDef, wgtDef, isForDisplay) => ("_"+JSON.stringify(val)),
                         valueLabel: "Text",
                         valuePlaceholder: "Enter text",
                     }
@@ -399,6 +205,9 @@ export default {
                     operators: [
                         'equal',
                         'not_equal',
+                        //note that unary ops will be excluded anyway, see getWidgetsForFieldOp()
+                        //"is_empty",
+                        //"is_not_empty",
                         'proximity'
                     ],
                 }
@@ -514,7 +323,8 @@ export default {
                         'select_any_in',
                         'select_not_any_in'
                     ],
-                    widgetProps: {},
+                    widgetProps: {
+                    },
                 },
             },
         },
@@ -522,10 +332,8 @@ export default {
             widgets: {
                 multiselect: {
                     operators: [
-                        'equal',
-                        'not_equal',
-                        'select_any_in',
-                        'select_not_any_in'
+                        'multiselect_equals',
+                        'multiselect_not_equals',
                     ]
                 }
             },
@@ -553,12 +361,12 @@ export default {
     },
     operators: {
         equal: {
-            label: 'IS',
+            label: '==',
             labelForFormat: '==',
             reversedOp: 'not_equal',
         },
         not_equal: {
-            label: 'IS NOT',
+            label: '!=',
             labelForFormat: '!=',
             reversedOp: 'equal',
         },
@@ -640,7 +448,7 @@ export default {
             },
         },
         select_equals: {
-            label: 'IS',
+            label: '==',
             labelForFormat: '==',
             formatOp: (field, op, value, valueSrc, valueType, opDef, operatorOptions, isForDisplay) => {
                 return `${field} == ${value}`;
@@ -648,7 +456,7 @@ export default {
             reversedOp: 'select_not_equals',
         },
         select_not_equals: {
-            label: 'IS NOT',
+            label: '!=',
             labelForFormat: '!=',
             formatOp: (field, op, value, valueSrc, valueType, opDef, operatorOptions, isForDisplay) => {
                 return `${field} != ${value}`;
@@ -656,7 +464,7 @@ export default {
             reversedOp: 'select_equals',
         },
         select_any_in: {
-            label: 'ANY IN',
+            label: 'Any in',
             labelForFormat: 'IN',
             formatOp: (field, op, values, valueSrc, valueType, opDef, operatorOptions, isForDisplay) => {
                 if (valueSrc == 'value')
@@ -667,7 +475,7 @@ export default {
             reversedOp: 'select_not_any_in',
         },
         select_not_any_in: {
-            label: 'NOT IN',
+            label: 'Not in',
             labelForFormat: 'NOT IN',
             formatOp: (field, op, values, valueSrc, valueType, opDef, operatorOptions, isForDisplay) => {
                 if (valueSrc == 'value')
@@ -700,30 +508,30 @@ export default {
             reversedOp: 'multiselect_equals',
         },
         proximity: {
-            label: 'Proximity search',
-            cardinality: 2,
-            valueLabels: [
-                {label: 'Word 1', placeholder: 'Enter first word'},
-                'Word 2'
-            ],
-            textSeparators: [
-                //'Word 1',
-                //'Word 2'
-            ],
-            formatOp: (field, op, values, valueSrc, valueType, opDef, operatorOptions, isForDisplay) => {
-                let val1 = values.first();
-                let val2 = values.get(1);
-                return `${field} ${val1} NEAR/${operatorOptions.get('proximity')} ${val2}`;
-            },
-            options: {
-                optionLabel: "Near",
-                optionTextBefore: "Near",
-                optionPlaceholder: "Select words between",
-                factory: (props) => <ProximityOperator {...props} />,
-                defaults: {
-                    proximity: 2
-                }
+          label: 'Proximity search',
+          cardinality: 2,
+          valueLabels: [
+            {label: 'Word 1', placeholder: 'Enter first word'},
+            'Word 2'
+          ],
+          textSeparators: [
+            //'Word 1',
+            //'Word 2'
+          ],
+          formatOp: (field, op, values, valueSrc, valueType, opDef, operatorOptions, isForDisplay) => {
+            let val1 = values.first();
+            let val2 = values.get(1);
+            return `${field} ${val1} NEAR/${operatorOptions.get('proximity')} ${val2}`;
+          },
+          options: {
+            optionLabel: "Near",
+            optionTextBefore: "Near",
+            optionPlaceholder: "Select words between",
+            factory: (props) => <ProximityOperator {...props} />,
+            defaults: {
+              proximity: 2
             }
+          }
         },
     },
     widgets: {
@@ -732,7 +540,7 @@ export default {
             valueSrc: 'value',
             factory: (props) => <TextWidget {...props} />,
             formatValue: (val, fieldDef, wgtDef, isForDisplay) => {
-                return isForDisplay ? '"' + val + '"' : JSON.stringify(val);
+                return isForDisplay ? '"'+val+'"' : JSON.stringify(val);
             },
             validateValue: (val, fieldDef) => {
                 return (val != "test");
@@ -754,7 +562,7 @@ export default {
             factory: (props) => <SelectWidget {...props} />,
             formatValue: (val, fieldDef, wgtDef, isForDisplay) => {
                 let valLabel = fieldDef.listValues[val];
-                return isForDisplay ? '"' + valLabel + '"' : JSON.stringify(val);
+                return isForDisplay ? '"'+valLabel+'"' : JSON.stringify(val);
             },
         },
         multiselect: {
@@ -763,7 +571,7 @@ export default {
             factory: (props) => <MultiSelectWidget {...props} />,
             formatValue: (vals, fieldDef, wgtDef, isForDisplay) => {
                 let valsLabels = vals.map(v => fieldDef.listValues[v]);
-                return isForDisplay ? valsLabels.map(v => '"' + v + '"') : vals.map(v => JSON.stringify(v));
+                return isForDisplay ? valsLabels.map(v => '"'+v+'"') : vals.map(v => JSON.stringify(v));
             },
         },
         date: {
@@ -774,7 +582,7 @@ export default {
             valueFormat: 'YYYY-MM-DD',
             formatValue: (val, fieldDef, wgtDef, isForDisplay) => {
                 let dateVal = moment(val, wgtDef.valueFormat);
-                return isForDisplay ? '"' + dateVal.format(wgtDef.dateFormat) + '"' : JSON.stringify(val);
+                return isForDisplay ? '"'+dateVal.format(wgtDef.dateFormat)+'"' : JSON.stringify(val);
             },
         },
         time: {
@@ -785,7 +593,7 @@ export default {
             valueFormat: 'HH:mm:ss',
             formatValue: (val, fieldDef, wgtDef, isForDisplay) => {
                 let dateVal = moment(val, wgtDef.valueFormat);
-                return isForDisplay ? '"' + dateVal.format(wgtDef.timeFormat) + '"' : JSON.stringify(val);
+                return isForDisplay ? '"'+dateVal.format(wgtDef.timeFormat)+'"' : JSON.stringify(val);
             },
         },
         datetime: {
@@ -797,7 +605,7 @@ export default {
             valueFormat: 'YYYY-MM-DD HH:mm:ss',
             formatValue: (val, fieldDef, wgtDef, isForDisplay) => {
                 let dateVal = moment(val, wgtDef.valueFormat);
-                return isForDisplay ? '"' + dateVal.format(wgtDef.dateFormat + ' ' + wgtDef.timeFormat) + '"' : JSON.stringify(val);
+                return isForDisplay ? '"'+dateVal.format(wgtDef.dateFormat + ' ' + wgtDef.timeFormat)+'"' : JSON.stringify(val);
             },
         },
         boolean: {
@@ -893,3 +701,15 @@ export default {
 
 
 
+Device: Type
+Device: Brand
+Device: Model
+Device: Name
+Device: Manufacturer
+Device: OS
+Device: OS Version
+Device: Browser
+Device: Browser Language
+Device: Browser Version
+Device: Display Width
+Device: Display Height
