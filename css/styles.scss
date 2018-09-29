@@ -1,4 +1,8 @@
-@mixin flex{
+$font-style: Helvetica, sans-serif;
+$dropdown-font-size: 12px;
+$dropdown-padding: 4px;
+
+@mixin flex {
   display: flex;
   align-items: center;
 }
@@ -27,17 +31,119 @@
   @include clearfix;
 }
 
-%flex{
+%flex {
   @include flex;
 }
 
 .query-builder {
+
   overflow: hidden;
   *, *::before, *::after {
     box-sizing: border-box;
   }
-}
 
+  /* CUSTOM */
+
+  h2 {
+    text-align: center;
+    font-size: 20px;
+    margin: 20px;
+  }
+
+  > p {
+    text-align: center;
+    max-width: 1440px;
+    padding: 30px !important;
+    margin: 0 auto;
+  }
+
+  .ant-select-dropdown-menu-item {
+    font-size: $dropdown-font-size;
+    padding: $dropdown-padding;
+  }
+
+  //.group-or-rule::after {
+  //  display: none;
+  //
+  //}
+  //
+  //.group-or-rule::before {
+  //  display: none;
+  //}
+
+  > .group-container {
+    > .group {
+      > .group--children{
+        > .group-container{
+          > .group{
+            > .group--header{
+              .route-number{
+                display: inline !important;
+                margin-left: 20px;
+              }
+            }
+
+          }
+        }
+      }
+
+      > .group--header {
+        > .group--conjunctions {
+          display: none;
+        }
+
+        > .group--actions{
+
+          .action--ADD-RULE{
+            display:none;
+          }
+          .action--ADD-GROUP{
+            display: none;
+          }
+          .action--ADD-ROUTE{
+            display: inherit !important;
+          }
+        }
+      }
+    }
+  }
+
+  .group-container {
+    > .group {
+
+      > .group--children{
+        .route-number{
+          display: none;
+          margin-left: 20px;
+        }
+      }
+
+      > .group--header {
+        > .group--actions{
+          .action--ADD-ROUTE{
+            display: none;
+          }
+        }
+      }
+    }
+  }
+
+  > .group-container {
+    > .group {
+      background: #ccc !important;
+      border: 1px solid #dddddd !important;
+    }
+  }
+
+  .group-container {
+    > .group {
+      background: #fafafa;
+      border: 1px solid #dddddd;
+    }
+  }
+  /* END CUSTOM */
+
+}
 
 /******************************************************************************/
 /** COMMON ********************************************************************/
@@ -92,19 +198,19 @@
 }
 
 .qb-placeholder {
-    border: 1px dashed gray;
+  border: 1px dashed gray;
 }
 
 .group-or-rule-container {
-    margin-bottom: 10px;
-    padding-right: 10px;
+  margin-bottom: 10px;
+  padding-right: 10px;
 }
 
 /******************************************************************************/
 /** GROUP *********************************************************************/
 /******************************************************************************/
 .group--header,
-.group--footer{
+.group--footer {
   @extend %flex;
 }
 
@@ -113,60 +219,59 @@
 
   & > .group-or-rule-container > .group-or-rule {
     &:before {
-        top: -4px;
-        border-width: 0 0 2px 2px;
+      top: -4px;
+      border-width: 0 0 2px 2px;
     }
 
-     &::after {
-        top: 50%;
-        border-width: 0 0 0 2px;    
+    &::after {
+      top: 50%;
+      border-width: 0 0 0 2px;
     }
 
     &::before, &::after {
-        content: '';
-        position: absolute;
-        left: -14px;
-        width: 14px;
-        height: calc(50% + 8px);
-        border-color: #CCC;
-        border-style: solid;    
-        -webkit-box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        box-sizing: border-box;
+      content: '';
+      position: absolute;
+      left: -14px;
+      width: 14px;
+      height: calc(50% + 8px);
+      border-color: #CCC;
+      border-style: solid;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
     }
   }
 
-
   & > .group-or-rule-container:first-child > .group-or-rule {
-      &::before {
-        top: -12px;
-        height: calc(50% + 14px);
-      }
+    &::before {
+      top: -12px;
+      height: calc(50% + 14px);
+    }
   }
 
   & > .group-or-rule-container:last-child > .group-or-rule {
-      &::before {
-        border-radius: 0 0 0 4px;
-      }
-      &::after {
-        display: none;
-      }
+    &::before {
+      border-radius: 0 0 0 4px;
+    }
+    &::after {
+      display: none;
+    }
   }
 
 }
 
 .group--children.hide--line {
-    & > .group-or-rule-container > .group-or-rule {
-        &::before, &::after {
-            border-color: rgba(128, 128, 128, 0.1);
-        }
+  & > .group-or-rule-container > .group-or-rule {
+    &::before, &::after {
+      border-color: rgba(128, 128, 128, 0.1);
     }
+  }
 }
 
 .qb-draggable {
-    &::before, &::after {
-        display: none;
-    }
+  &::before, &::after {
+    display: none;
+  }
 }
 
 .qb-drag-handler {
@@ -186,18 +291,18 @@
 }
 
 .group--conjunctions.hide--conj {
-    opacity: 0.3;
+  opacity: 0.3;
 }
 
 .group--actions {
   flex: 1;
   display: flex;
   &--tl,
-  &--bl{
+  &--bl {
     justify-content: flex-start;
   }
 
-  &--tl{
+  &--tl {
     margin-left: 20px;
   }
 
@@ -207,7 +312,7 @@
   }
 
   &--tr,
-  &--br{
+  &--br {
     justify-content: flex-end;
   }
 }
@@ -228,13 +333,15 @@
 }
 */
 
-.rule--field, .rule--operator, .rule--value, .rule--operator-options, .rule--widget, 
+.rule--field, .rule--operator, .rule--value, .rule--operator-options, .rule--widget,
 .widget--widget, .widget--valuesrc, .widget--sep, .operator--options--sep {
   display: inline-block;
 }
+
 .rule--operator, .widget--widget, .widget--valuesrc, .widget--sep {
   margin-left: 10px;
 }
+
 .operator--options--sep {
   margin-right: 10px;
 }

@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import Demo from './demo/demo.js';
-import { hot } from 'react-hot-loader'
+import {hot} from 'react-hot-loader'
 
 window.React = React;
-
 
 
 class App extends Component {
@@ -16,11 +15,11 @@ class App extends Component {
 }
 
 
-const  AppContainer = hot(module)(App);
+const AppContainer = hot(module)(App);
 
 ReactDOM.render((
     <AppContainer>
-        <Demo />
+        <Demo/>
     </AppContainer>
 ), document.body);
 

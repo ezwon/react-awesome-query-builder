@@ -108,7 +108,8 @@ class Group extends Component {
       <div className={`group--actions ${position}`}>
         <ButtonGroup
           size={this.props.config.settings.renderSize || "small"}
-        >{!this.props.config.settings.readonlyMode &&
+        >
+            {!this.props.config.settings.readonlyMode &&
           <Button
             icon="plus"
             className="action action--ADD-RULE"
@@ -117,11 +118,18 @@ class Group extends Component {
           }
           {!this.props.config.settings.readonlyMode && this.props.allowFurtherNesting ? (
             <Button
-              className="action action--ADD-GROUP"
-              icon="plus-circle-o"
-              onClick={this.props.addGroup}
+                className="action action--ADD-ROUTE"
+                icon="plus-circle-o"
+                onClick={this.props.addGroup}
             >{this.props.config.settings.addGroupLabel || "Add group"}</Button>
-          ) : null}
+            ) : null}
+            {!this.props.config.settings.readonlyMode && this.props.allowFurtherNesting ? (
+                <Button
+                    className="action action--ADD-GROUP"
+                    icon="plus-circle-o"
+                    onClick={this.props.addGroup}
+                >"Add group"</Button>
+            ) : null}
           {!this.props.config.settings.readonlyMode && !this.props.isRoot ? (
             <Button
               type="danger"
@@ -201,6 +209,7 @@ class Group extends Component {
         {this.props.config.settings.canReorder && this.props.treeNodesCnt > 2 && !this.props.isRoot &&
           <span className={"qb-drag-handler"} onMouseDown={this.handleDraggerMouseDown} > <Icon type="bars" /> </span>
         }
+        <span className="route-number">Route X</span>
       </div>
     );
   }

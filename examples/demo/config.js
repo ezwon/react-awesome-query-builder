@@ -3158,19 +3158,19 @@ const staticList = {
 
 export default {
     conjunctions: {
-        AND: {
-            label: 'AND',
-            formatConj: (children, conj, not, isForDisplay) => {
-                return children.size > 1 ?
-                    (not ? "NOT " : "") + '(' + children.join(' ' + (isForDisplay ? "AND" : "&&") + ' ') + ')'
-                    : (not ? "NOT (" : "") + children.first() + (not ? ")" : "");
-            },
-        },
         OR: {
             label: 'OR',
             formatConj: (children, conj, not, isForDisplay) => {
                 return children.size > 1 ?
                     (not ? "NOT " : "") + '(' + children.join(' ' + (isForDisplay ? "OR" : "||") + ' ') + ')'
+                    : (not ? "NOT (" : "") + children.first() + (not ? ")" : "");
+            },
+        },
+        AND: {
+            label: 'AND',
+            formatConj: (children, conj, not, isForDisplay) => {
+                return children.size > 1 ?
+                    (not ? "NOT " : "") + '(' + children.join(' ' + (isForDisplay ? "AND" : "&&") + ' ') + ')'
                     : (not ? "NOT (" : "") + children.first() + (not ? ")" : "");
             },
         },
@@ -3863,7 +3863,7 @@ export default {
         clearValueOnChangeField: false, //false - if prev & next fields have same type (widget), keep
         clearValueOnChangeOp: false,
         setDefaultFieldAndOp: false,
-        maxNesting: 10,
+        maxNesting: 4,
         fieldSeparator: '.',
         fieldSeparatorDisplay: '->',
         showLabels: false,
@@ -3874,11 +3874,11 @@ export default {
         fieldPlaceholder: "Select field",
         operatorPlaceholder: "Select operator",
         deleteLabel: null,
-        addGroupLabel: "Add group",
+        addGroupLabel: "Add Route",
         addRuleLabel: "Add rule",
         readonlyMode: false,
         notLabel: "Not",
-        showNot: true,
+        showNot: false,
         delGroupLabel: null,
         canLeaveEmptyGroup: true, //after deletion
         formatReverse: (q, operator, reversedOp, operatorDefinition, revOperatorDefinition, isForDisplay) => {
@@ -3903,7 +3903,7 @@ export default {
             }
         },
         valueSourcesPopupTitle: "Select value source",
-        canReorder: true,
+        canReorder: false,
         canCompareFieldWithField: (leftField, leftFieldConfig, rightField, rightFieldConfig) => {
             //for type == 'select'/'multiselect' you can check listValues
             return true;
