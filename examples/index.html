@@ -1,7 +1,7 @@
 <html lang="ru">
 <head>
     <meta charset="utf-8">
-    <title>React Awesome Query Builder - Examples</title>
+    <title>FunnelFlux Route Builder</title>
 </head>
 <body></body>
 <script
@@ -14,7 +14,6 @@
         $('body').on("click", function () {
             setTimeout(function(){
                 var groups = $('.query-builder > .group-container > .group > .group--children > .group-container > .group > .group--header');
-                console.log("Groups: ",groups.length)
                 for (var i = 0; i < groups.length; i++) {
                     var group = groups[i];
                     $(group).find(".route-number").html("Route " + (i + 1));

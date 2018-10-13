@@ -3379,12 +3379,7 @@ export default {
                 },
                 visitor_tags: {
                     label: 'Visitors Tags',
-                    type: 'select',
-                    listValues: {
-                        value1: "value1",
-                        value2: "value2",
-                        value3: "value3",
-                    },
+                    type: 'multiselect'
                 },
                 traffic_source: {
                     label: 'Traffic Source',
@@ -3410,7 +3405,7 @@ export default {
                         "is_not_empty",
                     ],
                     widgetProps: {
-                        formatValue: (val, fieldDef, wgtDef, isForDisplay) => ("_" + JSON.stringify(val)),
+                        formatValue: (val, fieldDef, wgtDef, isForDisplay) => (JSON.stringify(val)),
                         valueLabel: "Text",
                         valuePlaceholder: "Enter text",
                     }

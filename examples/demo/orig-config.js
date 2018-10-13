@@ -698,18 +698,3 @@ export default {
         },
     }
 };
-
-
-
-Device: Type
-Device: Brand
-Device: Model
-Device: Name
-Device: Manufacturer
-Device: OS
-Device: OS Version
-Device: Browser
-Device: Browser Language
-Device: Browser Version
-Device: Display Width
-Device: Display Height
