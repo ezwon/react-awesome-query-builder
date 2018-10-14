@@ -19,10 +19,16 @@ export default class DemoQueryBuilder extends Component {
         const jsonStyle = {backgroundColor: 'darkgrey', margin: '10px', padding: '10px'};
         const children = props.tree.get('children1');
         const conditions = [];
+        let i = 0;
 
-        children.map((child, i) => {
-            conditions.push(queryString(child, props.config));
+        conditions.push(`<?php\n`);
+
+        children.map((child) => {
+            conditions.push(`${i==0?`  if`:`  else if`}(${queryString(child, props.config)}){\n    return ${i + 1};\n  }\n`);
+            i++;
         });
+
+        conditions.push(`  else{\n    return "default";\n  }\n?>`);
 
         return (
             <div style={{padding: '10px'}}>
@@ -37,13 +43,14 @@ export default class DemoQueryBuilder extends Component {
                 </div>
                 <br/>
                 <div>
-                    {_.map(conditions, (item, i) => {
-                        return (
+
+                    {conditions.length > 2 &&
+                        (
                             <pre style={jsonStyle} key={i}>
-                                {item}
+                                {conditions.toString().replace(/,/g, "")}
                             </pre>
                         )
-                    })}
+                    }
                 </div>
 
                 {/*<hr/>*/}
