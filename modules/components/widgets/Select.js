@@ -27,6 +27,13 @@ export default class SelectWidget extends Component {
     return option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0;
   }
 
+  handleSearch = (val) =>{
+    console.log("meow:",val);
+    if (val.length < 3){
+      return;
+    }
+  };
+
   render() {
     let size = this.props.config.settings.renderSize || "small";
     let placeholder = this.props.placeholder || "Select option";
@@ -47,6 +54,7 @@ export default class SelectWidget extends Component {
             size={size}
             value={this.props.value || undefined} //note: (bug?) null forces placeholder to hide
             onChange={this.handleChange}
+            onSearch={this.handleSearch}
             filterOption={this.filterOption}
             {...customProps}
           >{options}

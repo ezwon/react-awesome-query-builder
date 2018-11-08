@@ -58,7 +58,7 @@ class ConnectedQuery extends Component {
         }
 
         this.validatedTree = this.validateTree(nextProps, oldConfig, oldTree);
-        let validatedTreeChanged = oldValidatedTree !== this.validatedTree 
+        let validatedTreeChanged = oldValidatedTree !== this.validatedTree
             && JSON.stringify(oldValidatedTree) != JSON.stringify(this.validatedTree);
         if (validatedTreeChanged) {
             onChange && onChange(this.validatedTree);

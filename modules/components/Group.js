@@ -209,7 +209,7 @@ class Group extends Component {
         {this.props.config.settings.canReorder && this.props.treeNodesCnt > 2 && !this.props.isRoot &&
           <span className={"qb-drag-handler"} onMouseDown={this.handleDraggerMouseDown} > <Icon type="bars" /> </span>
         }
-        <span className="route-number">Route X</span>
+        <span className="route-number"></span>
       </div>
     );
   }

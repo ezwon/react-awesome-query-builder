@@ -71,13 +71,34 @@ $dropdown-padding: 4px;
   //  display: none;
   //}
 
+  .default-route-block {
+    border: 1px solid #dddddd;
+    position: absolute;
+    height: 78px;
+    width: calc(100% - 42px);
+    z-index: 1;
+    background: #fafafa;
+    margin: 20px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    top: 220px;
+  }
+
   > .group-container {
     > .group {
-      > .group--children{
-        > .group-container{
-          > .group{
-            > .group--header{
-              .route-number{
+      > .group--children {
+
+        padding-top: 88px;
+
+        > .group-container {
+          > .group {
+            &::before{
+              border: none;
+            }
+
+            > .group--header {
+              .route-number {
                 display: inline !important;
                 margin-left: 20px;
               }
@@ -92,15 +113,15 @@ $dropdown-padding: 4px;
           display: none;
         }
 
-        > .group--actions{
+        > .group--actions {
 
-          .action--ADD-RULE{
-            display:none;
-          }
-          .action--ADD-GROUP{
+          .action--ADD-RULE {
             display: none;
           }
-          .action--ADD-ROUTE{
+          .action--ADD-GROUP {
+            display: none;
+          }
+          .action--ADD-ROUTE {
             display: inherit !important;
           }
         }
@@ -111,16 +132,16 @@ $dropdown-padding: 4px;
   .group-container {
     > .group {
 
-      > .group--children{
-        .route-number{
+      > .group--children {
+        .route-number {
           display: none;
           margin-left: 20px;
         }
       }
 
       > .group--header {
-        > .group--actions{
-          .action--ADD-ROUTE{
+        > .group--actions {
+          .action--ADD-ROUTE {
             display: none;
           }
         }
@@ -340,6 +361,10 @@ $dropdown-padding: 4px;
 
 .rule--operator, .widget--widget, .widget--valuesrc, .widget--sep {
   margin-left: 10px;
+}
+
+.widget--valuesrc {
+  display: none !important;
 }
 
 .operator--options--sep {

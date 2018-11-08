@@ -10,16 +10,21 @@
         crossorigin="anonymous"></script>
 <script src="./bundle.js"></script>
 <script>
-    $('document').ready(function () {
-        $('body').on("click", function () {
-            setTimeout(function(){
-                var groups = $('.query-builder > .group-container > .group > .group--children > .group-container > .group > .group--header');
-                for (var i = 0; i < groups.length; i++) {
-                    var group = groups[i];
-                    $(group).find(".route-number").html("Route " + (i + 1));
-                }
-            },200);
+    function boom() {
+        setTimeout(function () {
+            var groups = $('.query-builder > .group-container > .group > .group--children > .group-container > .group > .group--header');
+            for (var i = 0; i <= groups.length; i++) {
+                var group = groups[i];
+                $(group).find(".route-number").html("Route " + (i + 2));
+            }
+        }, 200);
+    }
 
+
+    $('document').ready(function () {
+        boom();
+        $('body').on("click", function () {
+            boom();
         });
     });
 </script>

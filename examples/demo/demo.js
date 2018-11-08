@@ -19,67 +19,70 @@ export default class DemoQueryBuilder extends Component {
         const jsonStyle = {backgroundColor: 'darkgrey', margin: '10px', padding: '10px'};
         const children = props.tree.get('children1');
         const conditions = [];
-        let i = 0;
+        let i = 1;
 
         conditions.push(`<?php\n`);
 
         children.map((child) => {
-            conditions.push(`${i==0?`  if`:`  else if`}(${queryString(child, props.config)}){\n    return ${i + 1};\n  }\n`);
+            conditions.push(`${i == 1 ? `  if` : `  else if`}(${queryString(child, props.config)}){\n    return ${i + 1};\n  }\n`);
             i++;
         });
 
-        conditions.push(`  else{\n    return "default";\n  }\n?>`);
+        conditions.push(`  else{\n    return 1;\n  }\n?>`);
 
         return (
-            <div style={{padding: '10px'}}>
-                <div className="query-builder">
+            <div style={{padding: '10px', maxWidth: '1000px', margin: '0 auto'}}>
+                <div className="query-builder" style={{position:"relative"}}>
                     <h2>FunnelFlux Route Builder</h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
                         labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
                         laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
                         voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
                         non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    <div className="default-route-block">
+                        <h2>Route 1 - Default Route</h2>
+                    </div>
                     <Builder {...props} />
                 </div>
                 <br/>
                 <div>
 
                     {conditions.length > 2 &&
-                        (
-                            <pre style={jsonStyle} key={i}>
-                                {conditions.toString().replace(/,/g, "")}
+                    (
+                        <pre style={jsonStyle} key={i}>
+                                {conditions.toString().replace(/,/g, "").replace("comma", ",")}
                             </pre>
-                        )
+                    )
                     }
                 </div>
 
                 {/*<hr/>*/}
                 {/*<div>*/}
-                    {/*humanStringFormat:*/}
-                    {/*<pre style={jsonStyle}>*/}
-                    {/*{stringify(queryString(props.tree, props.config, true), undefined, 2)}*/}
-                  {/*</pre>*/}
+                {/*humanStringFormat:*/}
+                {/*<pre style={jsonStyle}>*/}
+                {/*{stringify(queryString(props.tree, props.config, true), undefined, 2)}*/}
+                {/*</pre>*/}
                 {/*</div>*/}
                 {/*<hr/>*/}
                 {/*<div>*/}
-                    {/*queryBuilderFormat:*/}
-                    {/*<pre style={jsonStyle}>*/}
-                      {/*{stringify(queryBuilderFormat(props.tree, props.config), undefined, 2)}*/}
-                    {/*</pre>*/}
+                {/*queryBuilderFormat:*/}
+                {/*<pre style={jsonStyle}>*/}
+                {/*{stringify(queryBuilderFormat(props.tree, props.config), undefined, 2)}*/}
+                {/*</pre>*/}
                 {/*</div>*/}
                 {/*<hr/>*/}
                 {/*<div>*/}
-                    {/*Tree:*/}
-                    {/*<pre style={jsonStyle}>*/}
-                    {/*{stringify(props.tree, undefined, 2)}*/}
-                  {/*</pre>*/}
+                {/*Tree:*/}
+                {/*<pre style={jsonStyle}>*/}
+                {/*{stringify(props.tree, undefined, 2)}*/}
+                {/*</pre>*/}
                 {/*</div>*/}
                 {/*<hr/>*/}
                 {/*<div>*/}
-                    {/*Immutable Tree:*/}
-                    {/*<div style={jsonStyle}>*/}
-                        {/*{transit.toJSON(props.tree)}*/}
-                    {/*</div>*/}
+                {/*Immutable Tree:*/}
+                {/*<div style={jsonStyle}>*/}
+                {/*{transit.toJSON(props.tree)}*/}
+                {/*</div>*/}
                 {/*</div>*/}
 
             </div>
@@ -98,6 +101,7 @@ export default class DemoQueryBuilder extends Component {
                     {...config_props}
                     get_children={this.getChildren}
                 > </Query>
+
             </div>
         );
     }

@@ -719,7 +719,6 @@ const staticList = {
             "Other(Mobile)": "Other(Mobile)",
             "Other(NonMob)": "Other(NonMob)"
         },
-        //change to direct entry
         brand: {
             "Apple": "Apple",
             "Nokia": "Nokia",
@@ -3216,16 +3215,15 @@ export default {
                 },
                 brand: {
                     label: 'Brand',
-                    type: 'select',
-                    listValues: staticList.device.brand,
+                    type: 'text_one',
                 },
                 model: {
                     label: 'Model',
-                    type: 'text',
+                    type: 'text_one',
                 },
                 name: {
                     label: 'Name',
-                    type: 'text',
+                    type: 'text_one',
                 },
                 manufacturer: {
                     label: 'Manufacturer',
@@ -3239,11 +3237,11 @@ export default {
                 },
                 os_version: {
                     label: 'OS Version',
-                    type: 'text',
+                    type: 'text_two',
                 },
                 browser: {
                     label: 'Browser',
-                    type: 'text',
+                    type: 'text_one',
                 },
                 browser_language: {
                     label: 'Browser Language',
@@ -3256,11 +3254,11 @@ export default {
                 },
                 display_width: {
                     label: 'Display Width',
-                    type: 'text',
+                    type: 'text_two',
                 },
                 display_height: {
                     label: 'Display Height',
-                    type: 'text',
+                    type: 'text_two',
                 },
             }
         },
@@ -3269,33 +3267,33 @@ export default {
             type: '!struct',
             subfields: {
                 type: {
-                    label: 'type',
+                    label: 'Type',
                     type: 'select',
                     listValues: staticList.connection.type,
                 },
                 ip: {
                     label: 'IP',
-                    type: 'text',
+                    type: 'text_ip_address',
                 },
                 user_agent: {
                     label: 'User Agent',
-                    type: 'text',
+                    type: 'text_one',
                 },
                 referrer: {
                     label: 'Referrer',
-                    type: 'text',
+                    type: 'text_one',
                 },
                 current_url: {
                     label: 'Current URL',
-                    type: 'text',
+                    type: 'text_one',
                 },
                 isp: {
                     label: 'ISP',
-                    type: 'text',
+                    type: 'text_one',
                 },
                 mobile_carrier: {
                     label: 'Mobile Carrier',
-                    type: 'text',
+                    type: 'text_one',
                 },
             }
         },
@@ -3363,7 +3361,7 @@ export default {
                 datetime2: {
                     label: 'Date and Time',
                     type: 'datetime',
-                    valueSources: ['value']
+
                 },
 
             }
@@ -3374,12 +3372,11 @@ export default {
             subfields: {
                 custom_fields: {
                     label: 'Custom Fields',
-                    type: 'text',
-                    operators: ['proximity'],
+                    type: 'text_custom_field'
                 },
                 visitor_tags: {
                     label: 'Visitors Tags',
-                    type: 'multiselect'
+                    type: 'text_one'
                 },
                 traffic_source: {
                     label: 'Traffic Source',
@@ -3394,6 +3391,89 @@ export default {
         },
     },
     types: {
+        text_one: {
+            widgets: {
+                text: {
+                    defaultOperator: 'equal',
+                    operators: [
+                        'equal',
+                        'not_equal',
+                        'contains',
+                        'does_not_contain',
+                    ],
+                },
+                field: {
+                    operators: [
+                        'equal',
+                        'not_equal',
+
+                    ],
+                }
+            },
+        },
+        text_two: {
+            widgets: {
+                text: {
+                    defaultOperator: 'equal',
+                    operators: [
+                        'equal',
+                        'not_equal',
+                        'less',
+                        'greater',
+                    ],
+                },
+                field: {
+                    operators: [
+                        'equal',
+                        'not_equal',
+
+                    ],
+                }
+            },
+        },
+        text_ip_address: {
+            widgets: {
+                text: {
+                    defaultOperator: 'equal',
+                    operators: [
+                        'equal',
+                        'not_equal',
+                        'contains',
+                        'does_not_contain',
+                        'range_ip_address',
+                    ],
+                },
+                field: {
+                    operators: [
+                        'equal',
+                        'not_equal',
+
+                    ],
+                }
+            },
+        },
+        text_custom_field: {
+            widgets: {
+                text: {
+                    defaultOperator: 'custom_is',
+                    operators: [
+                        'custom_is',
+                        'custom_is_not',
+                    ],
+                    // widgetProps: {
+                    //     formatValue: (val, fieldDef, wgtDef, isForDisplay) => (JSON.stringify(val)),
+                    //     valueLabel: "Text",
+                    //     valuePlaceholder: "Enter text",
+                    // }
+                },
+                field: {
+                    operators: [
+                        'custom_is',
+                        'custom_is_not',
+                    ],
+                }
+            },
+        },
         text: {
             widgets: {
                 text: {
@@ -3401,8 +3481,6 @@ export default {
                     operators: [
                         'equal',
                         'not_equal',
-                        "is_empty",
-                        "is_not_empty",
                     ],
                     widgetProps: {
                         formatValue: (val, fieldDef, wgtDef, isForDisplay) => (JSON.stringify(val)),
@@ -3414,7 +3492,6 @@ export default {
                     operators: [
                         'equal',
                         'not_equal',
-                        'proximity'
                     ],
                 }
             },
@@ -3483,16 +3560,16 @@ export default {
             widgets: {
                 datetime: {
                     operators: [
-                        "equal",
-                        "not_equal",
+                        // "equal",
+                        // "not_equal",
                         "less",
                         "less_or_equal",
                         "greater",
                         "greater_or_equal",
                         "between",
                         "not_between",
-                        "is_empty",
-                        "is_not_empty",
+                        // "is_empty",
+                        // "is_not_empty",
                     ],
                     opProps: {
                         between: {
@@ -3577,10 +3654,103 @@ export default {
             labelForFormat: '!=',
             reversedOp: 'equal',
         },
+
+        contains: {
+            label: 'CONTAINS',
+            labelForFormat: '!=',
+            reversedOp: 'does_not_contain',
+            formatOp: (field, op, value, valueSrc, valueType, opDef, operatorOptions, isForDisplay) => {
+                return `strpos(${field}comma '${value}') !== false`;
+            },
+        },
+        does_not_contain: {
+            label: 'DOES NOT CONTAIN',
+            labelForFormat: '!=',
+            reversedOp: 'contains',
+            formatOp: (field, op, value, valueSrc, valueType, opDef, operatorOptions, isForDisplay) => {
+                return `strpos(${field}comma '${value}') === false`;
+            },
+        },
+
+        range_ip_address: {
+            label: 'RANGE',
+            cardinality: 2,
+            valueLabels: [
+                {label: 'First IP Address', placeholder: 'Enter beginning of IP'},
+                {label: 'Second IP Address', placeholder: 'Enter end of IP'},
+            ],
+            formatOp: (field, op, values, valueSrc, valueType, opDef, operatorOptions, isForDisplay) => {
+                let val1 = values.first();
+                let val2 = values.get(1);
+                return `(${field} > ${val1}) && (${field} < ${val2})`;
+            },
+        },
+
+        custom_is: {
+            label: 'IS',
+            cardinality: 2,
+            valueLabels: [
+                {label: 'Field', placeholder: 'Enter Field name'},
+                {label: 'Value', placeholder: 'Enter value to search'},
+            ],
+            formatOp: (field, op, values, valueSrc, valueType, opDef, operatorOptions, isForDisplay) => {
+                let val1 = values.first();
+                let val2 = values.get(1);
+                return `${field}['${val1}'] === '${val2}'`;
+            },
+        },
+        custom_is_not: {
+            label: 'IS NOT',
+            cardinality: 2,
+            valueLabels: [
+                {label: 'Field', placeholder: 'Enter Field name'},
+                {label: 'Value', placeholder: 'Enter value to search'},
+            ],
+            formatOp: (field, op, values, valueSrc, valueType, opDef, operatorOptions, isForDisplay) => {
+                let val1 = values.first();
+                let val2 = values.get(1);
+                return `${field}['${val1}'] !== '${val2}'`;
+            },
+        },
+        custom_contains: {
+            label: 'CONTAINS',
+            cardinality: 2,
+            valueLabels: [
+                {label: 'Field', placeholder: 'Enter Field name'},
+                {label: 'Value', placeholder: 'Enter value to search'},
+            ],
+            formatOp: (field, op, values, valueSrc, valueType, opDef, operatorOptions, isForDisplay) => {
+                let val1 = values.first();
+                let val2 = values.get(1);
+                return `strpos(${field}['${val1}']comma '${val2}') !== false`;
+            },
+        },
+        custom_does_not_contain: {
+            label: 'DOES NOT CONTAIN',
+            cardinality: 2,
+            valueLabels: [
+                {label: 'Field', placeholder: 'Enter Field name'},
+                {label: 'Value', placeholder: 'Enter value to search'},
+            ],
+            formatOp: (field, op, values, valueSrc, valueType, opDef, operatorOptions, isForDisplay) => {
+                let val1 = values.first();
+                let val2 = values.get(1);
+                return `strpos(${field}['${val1}']comma '${val2}') === false`;
+            },
+        },
+
         less: {
-            label: '<',
+            label: 'LESS THAN',
             labelForFormat: '<',
             reversedOp: 'greater_or_equal',
+            formatOp: (field, op, value) => {
+                value = value.toString().replace(/"/g, "");
+                if (isNaN(value)) {
+                    return `${field} < '${value}'`;
+                } else {
+                    return `${field} < ${value}`;
+                }
+            },
         },
         less_or_equal: {
             label: '<=',
@@ -3588,9 +3758,17 @@ export default {
             reversedOp: 'greater',
         },
         greater: {
-            label: '>',
+            label: 'GREATER THAN',
             labelForFormat: '>',
             reversedOp: 'less_or_equal',
+            formatOp: (field, op, value) => {
+                value = value.toString().replace(/"/g, "");
+                if (isNaN(value)) {
+                    return `${field} > '${value}'`;
+                } else {
+                    return `${field} > ${value}`;
+                }
+            },
         },
         greater_or_equal: {
             label: '>=',
@@ -3623,7 +3801,6 @@ export default {
             label: 'Not between',
             labelForFormat: 'NOT BETWEEN',
             cardinality: 2,
-            reversedOp: 'between',
             valueLabels: [
                 'Value from',
                 'Value to'
@@ -3719,26 +3896,26 @@ export default {
             cardinality: 2,
             valueLabels: [
                 {label: 'Word 1', placeholder: 'Enter first word'},
-                'Word 2'
+                {label: 'Word 2', placeholder: 'Enter second word'},
             ],
-            textSeparators: [
-                //'Word 1',
-                //'Word 2'
-            ],
+            // textSeparators: [
+            //     // 'Word 1',
+            //     //'Word 2'
+            // ],
             formatOp: (field, op, values, valueSrc, valueType, opDef, operatorOptions, isForDisplay) => {
                 let val1 = values.first();
                 let val2 = values.get(1);
-                return `${field} ${val1} NEAR/${operatorOptions.get('proximity')} ${val2}`;
+                return `${field} ${val1} ${val2}`;
             },
-            options: {
-                optionLabel: "Near",
-                optionTextBefore: "Near",
-                optionPlaceholder: "Select words between",
-                factory: (props) => <ProximityOperator {...props} />,
-                defaults: {
-                    proximity: 2
-                }
-            }
+            // options: {
+            //     optionLabel: "Near",
+            //     optionTextBefore: "Near",
+            //     optionPlaceholder: "Select words between",
+            //     factory: (props) => <ProximityOperator {...props} />,
+            //     defaults: {
+            //         proximity: 2
+            //     }
+            // }
         },
     },
     widgets: {
