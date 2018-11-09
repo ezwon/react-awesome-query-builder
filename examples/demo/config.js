@@ -3853,8 +3853,18 @@ export default {
             formatOp: (field, op, values, valueSrc, valueType, opDef, operatorOptions, isForDisplay) => {
                 if (valueSrc == 'value')
                     return `${field} IN (${values.join(', ')})`;
-                else
-                    return `${field} IN (${values})`;
+                else {
+                    const valueStr = values.join('comma');
+                    const fieldStr = field.split('.');
+                    let displayStr = "";
+
+                    if (fieldStr.length > 1) {
+                        displayStr = `in_array( $${fieldStr[0]}["${fieldStr[1]}"]comma [ ${valueStr} ] )`;
+                    } else {
+                        displayStr = `in_array( $${fieldStr[0]}comma [ ${valueStr} ] )`;
+                    }
+                    return displayStr;
+                }
             },
             reversedOp: 'select_not_any_in',
         },
@@ -3864,8 +3874,18 @@ export default {
             formatOp: (field, op, values, valueSrc, valueType, opDef, operatorOptions, isForDisplay) => {
                 if (valueSrc == 'value')
                     return `${field} NOT IN (${values.join(', ')})`;
-                else
-                    return `${field} NOT IN (${values})`;
+                else {
+                    const valueStr = values.join('comma');
+                    const fieldStr = field.split('.');
+                    let displayStr = "";
+
+                    if (fieldStr.length > 1) {
+                        displayStr = `!in_array( $${fieldStr[0]}["${fieldStr[1]}"]comma [ ${valueStr} ] )`;
+                    } else {
+                        displayStr = `!in_array( $${fieldStr[0]}comma [ ${valueStr} ] )`;
+                    }
+                    return displayStr;
+                }
             },
             reversedOp: 'select_any_in',
         },
