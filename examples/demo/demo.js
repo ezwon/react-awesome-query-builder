@@ -34,11 +34,8 @@ export default class DemoQueryBuilder extends Component {
             <div style={{padding: '10px', maxWidth: '1000px', margin: '0 auto'}}>
                 <div className="query-builder" style={{position:"relative"}}>
                     <h2>FunnelFlux Route Builder</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-                        non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    <p>Below is our route builder (beta). Use this to build rules and output the PHP code equivalent, which you can then paste into a PHP node in FunnelFlux.<p>
+                    <p>Note that some attributes like carrier, ISP, city etc. require manual text entry due to the very large lists of available options -- if you need to add multiple cities for example, just create additional rules for city with the OR option selected.</p>
                     <div className="default-route-block">
                         <h2>Route 1 - Default Route</h2>
                     </div>
