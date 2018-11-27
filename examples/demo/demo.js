@@ -32,10 +32,13 @@ export default class DemoQueryBuilder extends Component {
 
         return (
             <div style={{padding: '10px', maxWidth: '1000px', margin: '0 auto'}}>
-                <div className="query-builder" style={{position:"relative"}}>
+                <div className="query-builder" style={{position: "relative"}}>
                     <h2>FunnelFlux Route Builder</h2>
-                    <p>Below is our route builder (beta). Use this to build rules and output the PHP code equivalent, which you can then paste into a PHP node in FunnelFlux.<p>
-                    <p>Note that some attributes like carrier, ISP, city etc. require manual text entry due to the very large lists of available options -- if you need to add multiple cities for example, just create additional rules for city with the OR option selected.</p>
+                    <p>Below is our route builder (beta). Use this to build rules and output the PHP code equivalent,
+                        which you can then paste into a PHP node in FunnelFlux.</p>
+                    <p>Note that some attributes like carrier, ISP, city etc. require manual text entry due to the very
+                        large lists of available options, if you need to add multiple cities for example, just create
+                        additional rules for city with the OR option selected.</p>
                     <div className="default-route-block">
                         <h2>Route 1 - Default Route</h2>
                     </div>
@@ -47,7 +50,7 @@ export default class DemoQueryBuilder extends Component {
                     {conditions.length > 2 &&
                     (
                         <pre style={jsonStyle} key={i}>
-                                {conditions.toString().replace(/,/g, "").replace("comma", ",")}
+                                {conditions.toString().replace(/,/g, "").replace(/comma/g, ",")}
                             </pre>
                     )
                     }

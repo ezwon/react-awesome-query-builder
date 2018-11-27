@@ -3648,11 +3648,17 @@ export default {
             label: 'IS',
             labelForFormat: '==',
             reversedOp: 'not_equal',
+            formatOp: (field, op, value, valueSrc, valueType, opDef, operatorOptions, isForDisplay) => {
+                return `"{${field.replace(".","-")}}" == ${value}`;
+            },
         },
         not_equal: {
             label: 'IS NOT',
             labelForFormat: '!=',
             reversedOp: 'equal',
+            formatOp: (field, op, value, valueSrc, valueType, opDef, operatorOptions, isForDisplay) => {
+                return `"{${field.replace(".","-")}}" != ${value}`;
+            },
         },
 
         contains: {
@@ -3660,7 +3666,7 @@ export default {
             labelForFormat: '!=',
             reversedOp: 'does_not_contain',
             formatOp: (field, op, value, valueSrc, valueType, opDef, operatorOptions, isForDisplay) => {
-                return `strpos(${field}comma '${value}') !== false`;
+                return `strpos("{${field.replace(".","-")}"}comma '${value}') !== false`;
             },
         },
         does_not_contain: {
@@ -3682,7 +3688,7 @@ export default {
             formatOp: (field, op, values, valueSrc, valueType, opDef, operatorOptions, isForDisplay) => {
                 let val1 = values.first();
                 let val2 = values.get(1);
-                return `(${field} > ${val1}) && (${field} < ${val2})`;
+                return `("{${field.replace(".","-")}}" > ${val1}) && ("{${field.replace(".","-")}}" < ${val2})`;
             },
         },
 
@@ -3696,7 +3702,7 @@ export default {
             formatOp: (field, op, values, valueSrc, valueType, opDef, operatorOptions, isForDisplay) => {
                 let val1 = values.first();
                 let val2 = values.get(1);
-                return `${field}['${val1}'] === '${val2}'`;
+                return `"{${field.replace(".","-")}-${val1}}" === '${val2}'`;
             },
         },
         custom_is_not: {
@@ -3742,20 +3748,28 @@ export default {
         less: {
             label: 'LESS THAN',
             labelForFormat: '<',
-            reversedOp: 'greater_or_equal',
+            reversedOp: 'greater',
             formatOp: (field, op, value) => {
                 value = value.toString().replace(/"/g, "");
                 if (isNaN(value)) {
-                    return `${field} < '${value}'`;
+                    return `"{${field.replace(".","-")}}" < '${value}'`;
                 } else {
-                    return `${field} < ${value}`;
+                    return `"{${field.replace(".","-")}}" < ${value}`;
                 }
             },
         },
         less_or_equal: {
             label: '<=',
             labelForFormat: '<=',
-            reversedOp: 'greater',
+            reversedOp: 'greater_or_equal',
+            formatOp: (field, op, value) => {
+                value = value.toString().replace(/"/g, "");
+                if (isNaN(value)) {
+                    return `"{${field.replace(".","-")}}" <= '${value}'`;
+                } else {
+                    return `"{${field.replace(".","-")}}" <= ${value}`;
+                }
+            },
         },
         greater: {
             label: 'GREATER THAN',
@@ -3764,16 +3778,24 @@ export default {
             formatOp: (field, op, value) => {
                 value = value.toString().replace(/"/g, "");
                 if (isNaN(value)) {
-                    return `${field} > '${value}'`;
+                    return `"{${field.replace(".","-")}}" > '${value}'`;
                 } else {
-                    return `${field} > ${value}`;
+                    return `"{${field.replace(".","-")}}" > ${value}`;
                 }
             },
         },
         greater_or_equal: {
             label: '>=',
             labelForFormat: '>=',
-            reversedOp: 'less',
+            reversedOp: 'less_or_equal',
+            formatOp: (field, op, value) => {
+                value = value.toString().replace(/"/g, "");
+                if (isNaN(value)) {
+                    return `"{${field.replace(".","-")}}" >= '${value}'`;
+                } else {
+                    return `"{${field.replace(".","-")}}" >= ${value}`;
+                }
+            },
         },
         between: {
             label: 'Between',
@@ -3783,9 +3805,9 @@ export default {
                 let valFrom = values.first();
                 let valTo = values.get(1);
                 if (isForDisplay)
-                    return `${field} >= ${valFrom} AND ${field} <= ${valTo}`;
+                    return `"{${field.replace(".","-")}}" >= ${valFrom} AND "{${field.replace(".","-")}}" <= ${valTo}`;
                 else
-                    return `${field} >= ${valFrom} && ${field} <= ${valTo}`;
+                    return `"{${field.replace(".","-")}}" >= ${valFrom} && "{${field.replace(".","-")}}" <= ${valTo}`;
             },
             valueLabels: [
                 'Value from',
@@ -3818,7 +3840,7 @@ export default {
             cardinality: 0,
             reversedOp: 'is_not_empty',
             formatOp: (field, op, value, valueSrc, valueType, opDef, operatorOptions, isForDisplay) => {
-                return isForDisplay ? `${field} IS EMPTY` : `!${field}`;
+                return isForDisplay ? `"{${field.replace(".","-")}}" IS EMPTY` : `!${field}`;
             },
         },
         is_not_empty: {
@@ -3835,7 +3857,7 @@ export default {
             label: 'IS',
             labelForFormat: '==',
             formatOp: (field, op, value, valueSrc, valueType, opDef, operatorOptions, isForDisplay) => {
-                return `${field} == ${value}`;
+                return `"{${field.replace(".","-")}}" == ${value}`;
             },
             reversedOp: 'select_not_equals',
         },
@@ -3843,7 +3865,7 @@ export default {
             label: 'IS NOT',
             labelForFormat: '!=',
             formatOp: (field, op, value, valueSrc, valueType, opDef, operatorOptions, isForDisplay) => {
-                return `${field} != ${value}`;
+                return `"{${field}"} != ${value}`;
             },
             reversedOp: 'select_equals',
         },
@@ -3852,16 +3874,16 @@ export default {
             labelForFormat: 'IN',
             formatOp: (field, op, values, valueSrc, valueType, opDef, operatorOptions, isForDisplay) => {
                 if (valueSrc == 'value')
-                    return `${field} IN (${values.join(', ')})`;
+                    return `"{${field}}" IN (${values.join(', ')})`;
                 else {
                     const valueStr = values.join('comma');
                     const fieldStr = field.split('.');
                     let displayStr = "";
 
                     if (fieldStr.length > 1) {
-                        displayStr = `in_array( $${fieldStr[0]}["${fieldStr[1]}"]comma [ ${valueStr} ] )`;
+                        displayStr = `in_array( "{${fieldStr[0]}-${fieldStr[1]}}"comma [ ${valueStr} ] )`;
                     } else {
-                        displayStr = `in_array( $${fieldStr[0]}comma [ ${valueStr} ] )`;
+                        displayStr = `in_array( "{${fieldStr[0].replace(".","-")}}"comma [ ${valueStr} ] )`;
                     }
                     return displayStr;
                 }
@@ -3880,9 +3902,9 @@ export default {
                     let displayStr = "";
 
                     if (fieldStr.length > 1) {
-                        displayStr = `!in_array( $${fieldStr[0]}["${fieldStr[1]}"]comma [ ${valueStr} ] )`;
+                        displayStr = `!in_array( "{${fieldStr[0]}-${fieldStr[1]}}"comma [ ${valueStr} ] )`;
                     } else {
-                        displayStr = `!in_array( $${fieldStr[0]}comma [ ${valueStr} ] )`;
+                        displayStr = `!in_array( "{${fieldStr[0].replace(".","-")}}"comma [ ${valueStr} ] )`;
                     }
                     return displayStr;
                 }
@@ -3894,9 +3916,9 @@ export default {
             labelForFormat: '==',
             formatOp: (field, op, values, valueSrc, valueType, opDef, operatorOptions, isForDisplay) => {
                 if (valueSrc == 'value')
-                    return `${field} == [${values.join(', ')}]`;
+                    return `"{${field.replace(".","-")}}" == [${values.join(', ')}]`;
                 else
-                    return `${field} == ${values}`;
+                    return `"{${field.replace(".","-")}}" == ${values}`;
             },
             reversedOp: 'multiselect_not_equals',
         },
