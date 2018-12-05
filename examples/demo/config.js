@@ -3184,7 +3184,7 @@ export default {
                     type: 'select',
                     listValues: staticList.location.continent,
                 },
-                country: {
+                countryname: {
                     label: 'Country',
                     type: 'select',
                     listValues: staticList.location.country,
@@ -3235,7 +3235,7 @@ export default {
                     type: 'select',
                     listValues: staticList.device.os,
                 },
-                os_version: {
+                osversion: {
                     label: 'OS Version',
                     type: 'text_two',
                 },
@@ -3248,7 +3248,7 @@ export default {
                     type: 'select',
                     listValues: staticList.device.browser_language,
                 },
-                browser_version: {
+                browserversion: {
                     label: 'Browser Version',
                     type: 'text',
                 },
@@ -3275,7 +3275,7 @@ export default {
                     label: 'IP',
                     type: 'text_ip_address',
                 },
-                user_agent: {
+                useragent: {
                     label: 'User Agent',
                     type: 'text_one',
                 },
@@ -3291,7 +3291,7 @@ export default {
                     label: 'ISP',
                     type: 'text_one',
                 },
-                mobile_carrier: {
+                mobilecarrier: {
                     label: 'Mobile Carrier',
                     type: 'text_one',
                 },
@@ -3370,9 +3370,17 @@ export default {
             label: 'Others',
             type: '!struct',
             subfields: {
-                custom_fields: {
+                customfields: {
                     label: 'Custom Fields',
                     type: 'text_custom_field'
+                },
+                trackingfield: {
+                    label: 'Tracking Field',
+                    type: 'text_custom_field_two'
+                },
+                buffer: {
+                    label: 'Buffer',
+                    type: 'text_custom_field_two'
                 },
                 visitor_tags: {
                     label: 'Visitors Tags',
@@ -3460,16 +3468,32 @@ export default {
                         'custom_is',
                         'custom_is_not',
                     ],
-                    // widgetProps: {
-                    //     formatValue: (val, fieldDef, wgtDef, isForDisplay) => (JSON.stringify(val)),
-                    //     valueLabel: "Text",
-                    //     valuePlaceholder: "Enter text",
-                    // }
                 },
                 field: {
                     operators: [
                         'custom_is',
                         'custom_is_not',
+                    ],
+                }
+            },
+        },
+        text_custom_field_two: {
+            widgets: {
+                text: {
+                    defaultOperator: 'custom_is_two',
+                    operators: [
+                        'custom_is_two',
+                        'custom_is_not_two',
+                        'custom_contains_two',
+                        'custom_does_not_contain_two',
+                    ],
+                },
+                field: {
+                    operators: [
+                        'custom_is_two',
+                        'custom_is_not_two',
+                        'custom_contains_two',
+                        'custom_does_not_contain_two',
                     ],
                 }
             },
@@ -3702,7 +3726,7 @@ export default {
             formatOp: (field, op, values, valueSrc, valueType, opDef, operatorOptions, isForDisplay) => {
                 let val1 = values.first();
                 let val2 = values.get(1);
-                return `"{${field.replace(".","-")}-${val1}}" === '${val2}'`;
+                return `"{${field.split(".")[1]}-${val1.replace(/"/g,"")}}" === ${val2}`;
             },
         },
         custom_is_not: {
@@ -3715,7 +3739,7 @@ export default {
             formatOp: (field, op, values, valueSrc, valueType, opDef, operatorOptions, isForDisplay) => {
                 let val1 = values.first();
                 let val2 = values.get(1);
-                return `${field}['${val1}'] !== '${val2}'`;
+                return `"{${field.split(".")[1]}-${val1.replace(/"/g,"")}}" !== ${val2}`;
             },
         },
         custom_contains: {
@@ -3728,7 +3752,7 @@ export default {
             formatOp: (field, op, values, valueSrc, valueType, opDef, operatorOptions, isForDisplay) => {
                 let val1 = values.first();
                 let val2 = values.get(1);
-                return `strpos(${field}['${val1}']comma '${val2}') !== false`;
+                return `strpos("{${field.split(".")[1]}-${val1.replace(/"/g,"")}}")comma ${val2}) !== false`;
             },
         },
         custom_does_not_contain: {
@@ -3741,7 +3765,60 @@ export default {
             formatOp: (field, op, values, valueSrc, valueType, opDef, operatorOptions, isForDisplay) => {
                 let val1 = values.first();
                 let val2 = values.get(1);
-                return `strpos(${field}['${val1}']comma '${val2}') === false`;
+                return `strpos("{${field.split(".")[1]}-${val1.replace(/"/g,"")}}")comma ${val2}) === false`;
+            },
+        },
+
+        custom_is_two: {
+            label: 'IS',
+            cardinality: 2,
+            valueLabels: [
+                {label: 'Field', placeholder: 'Enter Field name'},
+                {label: 'Value', placeholder: 'Enter value to search'},
+            ],
+            formatOp: (field, op, values, valueSrc, valueType, opDef, operatorOptions, isForDisplay) => {
+                let val1 = values.first();
+                let val2 = values.get(1);
+                return `"{${field.split(".")[1]}-${val1.replace(/"/g,"")}}" === ${val2}`;
+            },
+        },
+        custom_is_not_two: {
+            label: 'IS NOT',
+            cardinality: 2,
+            valueLabels: [
+                {label: 'Field', placeholder: 'Enter Field name'},
+                {label: 'Value', placeholder: 'Enter value to search'},
+            ],
+            formatOp: (field, op, values, valueSrc, valueType, opDef, operatorOptions, isForDisplay) => {
+                let val1 = values.first();
+                let val2 = values.get(1);
+                return `"{${field.split(".")[1]}-${val1.replace(/"/g,"")}}" !== ${val2}`;
+            },
+        },
+        custom_contains_two: {
+            label: 'CONTAINS',
+            cardinality: 2,
+            valueLabels: [
+                {label: 'Field', placeholder: 'Enter Field name'},
+                {label: 'Value', placeholder: 'Enter value to search'},
+            ],
+            formatOp: (field, op, values, valueSrc, valueType, opDef, operatorOptions, isForDisplay) => {
+                let val1 = values.first();
+                let val2 = values.get(1);
+                return `strpos("{${field.split(".")[1]}-${val1.replace(/"/g,"")}}")comma ${val2}) !== false`;
+            },
+        },
+        custom_does_not_contain_two: {
+            label: 'DOES NOT CONTAIN',
+            cardinality: 2,
+            valueLabels: [
+                {label: 'Field', placeholder: 'Enter Field name'},
+                {label: 'Value', placeholder: 'Enter value to search'},
+            ],
+            formatOp: (field, op, values, valueSrc, valueType, opDef, operatorOptions, isForDisplay) => {
+                let val1 = values.first();
+                let val2 = values.get(1);
+                return `strpos("{${field.split(".")[1]}-${val1.replace(/"/g,"")}}")comma ${val2}) === false`;
             },
         },
 
