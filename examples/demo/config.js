@@ -3370,35 +3370,45 @@ export default {
             label: 'Others',
             type: '!struct',
             subfields: {
-                customfields: {
-                    label: 'Custom Fields',
-                    type: 'text_custom_field'
-                },
                 trackingfield: {
                     label: 'Tracking Field',
                     type: 'text_custom_field_two'
                 },
                 buffer: {
-                    label: 'Buffer',
+                    label: 'Buffer Field',
                     type: 'text_custom_field_two'
                 },
                 visitor_tags: {
                     label: 'Visitors Tags',
                     type: 'text_one'
                 },
-                traffic_source: {
+                trafficsource_name: {
                     label: 'Traffic Source',
-                    type: 'select',
-                    listValues: {
-                        value1: "value1",
-                        value2: "value2",
-                        value3: "value3",
-                    },
+                    type: 'trafficsource_name_text_one',
                 },
             },
         },
     },
     types: {
+        trafficsource_name_text_one: {
+            widgets: {
+                text: {
+                    defaultOperator: 'equal_trafficsource_name',
+                    operators: [
+                        'equal_trafficsource_name',
+                        'not_equal_trafficsource_name',
+                        'contains_trafficsource_name',
+                        'does_not_contain_trafficsource_name',
+                    ],
+                },
+                field: {
+                    operators: [
+                        'equal_trafficsource_name',
+                        'not_equal_trafficsource_name',
+                    ],
+                }
+            },
+        },
         text_one: {
             widgets: {
                 text: {
@@ -3690,7 +3700,7 @@ export default {
             labelForFormat: '!=',
             reversedOp: 'does_not_contain',
             formatOp: (field, op, value, valueSrc, valueType, opDef, operatorOptions, isForDisplay) => {
-                return `strpos("{${field.replace(".","-")}"}comma '${value}') !== false`;
+                return `strpos("{${field.replace(".","-")}}"comma ${value}) !== false`;
             },
         },
         does_not_contain: {
@@ -3698,7 +3708,41 @@ export default {
             labelForFormat: '!=',
             reversedOp: 'contains',
             formatOp: (field, op, value, valueSrc, valueType, opDef, operatorOptions, isForDisplay) => {
-                return `strpos(${field}comma '${value}') === false`;
+                return `strpos("{${field.replace(".","-")}}"comma ${value}) === false`;
+            },
+        },
+
+        equal_trafficsource_name: {
+            label: 'IS',
+            labelForFormat: '==',
+            reversedOp: 'not_equal',
+            formatOp: (field, op, value, valueSrc, valueType, opDef, operatorOptions, isForDisplay) => {
+                return `"{trafficsource-name}" == ${value}`;
+            },
+        },
+        not_equal_trafficsource_name: {
+            label: 'IS NOT',
+            labelForFormat: '!=',
+            reversedOp: 'equal',
+            formatOp: (field, op, value, valueSrc, valueType, opDef, operatorOptions, isForDisplay) => {
+                return `"{trafficsource-name}" != ${value}`;
+            },
+        },
+
+        contains_trafficsource_name: {
+            label: 'CONTAINS',
+            labelForFormat: '!=',
+            reversedOp: 'does_not_contain',
+            formatOp: (field, op, value, valueSrc, valueType, opDef, operatorOptions, isForDisplay) => {
+                return `strpos("{trafficsource-name}"comma ${value}) !== false`;
+            },
+        },
+        does_not_contain_trafficsource_name: {
+            label: 'DOES NOT CONTAIN',
+            labelForFormat: '!=',
+            reversedOp: 'contains',
+            formatOp: (field, op, value, valueSrc, valueType, opDef, operatorOptions, isForDisplay) => {
+                return `strpos("{trafficsource-name}"comma ${value}) === false`;
             },
         },
 
@@ -3829,7 +3873,7 @@ export default {
             formatOp: (field, op, value) => {
                 value = value.toString().replace(/"/g, "");
                 if (isNaN(value)) {
-                    return `"{${field.replace(".","-")}}" < '${value}'`;
+                    return `"{${field.replace(".","-")}}" < ${value}`;
                 } else {
                     return `"{${field.replace(".","-")}}" < ${value}`;
                 }
@@ -3842,7 +3886,7 @@ export default {
             formatOp: (field, op, value) => {
                 value = value.toString().replace(/"/g, "");
                 if (isNaN(value)) {
-                    return `"{${field.replace(".","-")}}" <= '${value}'`;
+                    return `"{${field.replace(".","-")}}" <= ${value}`;
                 } else {
                     return `"{${field.replace(".","-")}}" <= ${value}`;
                 }
@@ -3855,7 +3899,7 @@ export default {
             formatOp: (field, op, value) => {
                 value = value.toString().replace(/"/g, "");
                 if (isNaN(value)) {
-                    return `"{${field.replace(".","-")}}" > '${value}'`;
+                    return `"{${field.replace(".","-")}}" > ${value}`;
                 } else {
                     return `"{${field.replace(".","-")}}" > ${value}`;
                 }
@@ -3868,7 +3912,7 @@ export default {
             formatOp: (field, op, value) => {
                 value = value.toString().replace(/"/g, "");
                 if (isNaN(value)) {
-                    return `"{${field.replace(".","-")}}" >= '${value}'`;
+                    return `"{${field.replace(".","-")}}" >= ${value}`;
                 } else {
                     return `"{${field.replace(".","-")}}" >= ${value}`;
                 }
@@ -3942,7 +3986,7 @@ export default {
             label: 'IS NOT',
             labelForFormat: '!=',
             formatOp: (field, op, value, valueSrc, valueType, opDef, operatorOptions, isForDisplay) => {
-                return `"{${field}"} != ${value}`;
+                return `"{${field}}" != ${value}`;
             },
             reversedOp: 'select_equals',
         },

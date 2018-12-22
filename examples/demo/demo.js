@@ -34,11 +34,21 @@ export default class DemoQueryBuilder extends Component {
             <div style={{padding: '10px', maxWidth: '1000px', margin: '0 auto'}}>
                 <div className="query-builder" style={{position: "relative"}}>
                     <h2>FunnelFlux Route Builder</h2>
-                    <p>Below is our route builder (beta). Use this to build rules and output the PHP code equivalent,
-                        which you can then paste into a PHP node in FunnelFlux.</p>
-                    <p>Note that some attributes like carrier, ISP, city etc. require manual text entry due to the very
-                        large lists of available options, if you need to add multiple cities for example, just create
-                        additional rules for city with the OR option selected.</p>
+                    <p>Below is our route builder. Use this to build rules that output code that you can then paste into
+                        a PHP node in FunnelFlux.</p>
+
+                    <p>Note 1: A default route 1 is always included and the PHP node will return 1 if no rules match the
+                        user. Your "on done 1" connection in your funnel should <strong>always</strong> exist and go to
+                        a default location. Other rules will go down the "on done X" connections of the same number as
+                        your routes built here.</p>
+
+                    <p>Note 2: Some attributes like carrier, ISP, city etc. require manual text entry due to the very
+                        large lists of available options. If you need to add multiple items, just create additional
+                        rules within the route block (or group) with the OR option selected.</p>
+
+                    <p>Note 3: These rules process sequentially, so a user will go to the lowest numbered route that
+                        they match.</p>
+
                     <div className="default-route-block">
                         <h2>Route 1 - Default Route</h2>
                     </div>
@@ -55,36 +65,6 @@ export default class DemoQueryBuilder extends Component {
                     )
                     }
                 </div>
-
-                {/*<hr/>*/}
-                {/*<div>*/}
-                {/*humanStringFormat:*/}
-                {/*<pre style={jsonStyle}>*/}
-                {/*{stringify(queryString(props.tree, props.config, true), undefined, 2)}*/}
-                {/*</pre>*/}
-                {/*</div>*/}
-                {/*<hr/>*/}
-                {/*<div>*/}
-                {/*queryBuilderFormat:*/}
-                {/*<pre style={jsonStyle}>*/}
-                {/*{stringify(queryBuilderFormat(props.tree, props.config), undefined, 2)}*/}
-                {/*</pre>*/}
-                {/*</div>*/}
-                {/*<hr/>*/}
-                {/*<div>*/}
-                {/*Tree:*/}
-                {/*<pre style={jsonStyle}>*/}
-                {/*{stringify(props.tree, undefined, 2)}*/}
-                {/*</pre>*/}
-                {/*</div>*/}
-                {/*<hr/>*/}
-                {/*<div>*/}
-                {/*Immutable Tree:*/}
-                {/*<div style={jsonStyle}>*/}
-                {/*{transit.toJSON(props.tree)}*/}
-                {/*</div>*/}
-                {/*</div>*/}
-
             </div>
         )
     }
