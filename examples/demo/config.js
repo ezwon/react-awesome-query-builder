@@ -1,5 +1,6 @@
 import React from 'react';
 import {Widgets, Operators} from 'react-awesome-query-builder';
+import _ from "lodash";
 
 const {
     TextWidget,
@@ -16,6 +17,10 @@ const {ProximityOperator} = Operators;
 import moment from 'moment';
 import en_US from 'antd/lib/locale-provider/en_US';
 import ru_RU from 'antd/lib/locale-provider/ru_RU';
+
+const browser_language = {
+
+};
 
 const staticList = {
     location: {
@@ -704,7 +709,7 @@ const staticList = {
             "Pacific/Tongatapu": "Pacific/Tongatapu",
             "Pacific/Wake": "Pacific/Wake",
             "Pacific/Wallis": "Pacific/Wallis",
-            "UTC666": "UTC666",
+            "UTC": "UTC",
         },
     },
     device: {
@@ -2912,236 +2917,236 @@ const staticList = {
             "webOS": "webOS",
         },
         browser_language: {
-            "Abkhazian": "Abkhazian",
-            "Afar": "Afar",
-            "Afrikaans": "Afrikaans",
-            "Albanian": "Albanian",
-            "Amharic": "Amharic",
-            "All Arabic": "All Arabic",
-            "Arabic (Algeria)": "Arabic (Algeria)",
-            "Arabic (Bahrain)": "Arabic (Bahrain)",
-            "Arabic (Egypt)": "Arabic (Egypt)",
-            "Arabic (Iraq)": "Arabic (Iraq)",
-            "Arabic (Jordan)": "Arabic (Jordan)",
-            "Arabic (Kuwait)": "Arabic (Kuwait)",
-            "Arabic (Lebanon)": "Arabic (Lebanon)",
-            "Arabic (Libya)": "Arabic (Libya)",
-            "Arabic (Morocco)": "Arabic (Morocco)",
-            "Arabic (Oman)": "Arabic (Oman)",
-            "Arabic (Palestine)": "Arabic (Palestine)",
-            "Arabic (Qatar)": "Arabic (Qatar)",
-            "Arabic (Saudi Arabia)": "Arabic (Saudi Arabia)",
-            "Arabic (Syria)": "Arabic (Syria)",
-            "Arabic (Tunisia)": "Arabic (Tunisia)",
-            "Arabic (United Arab Emirates)": "Arabic (United Arab Emirates)",
-            "Arabic (Yemen)": "Arabic (Yemen)",
-            "Aragonese": "Aragonese",
-            "Armenian": "Armenian",
-            "Assamese": "Assamese",
-            "Asturian": "Asturian",
-            "Aymara": "Aymara",
-            "Azerbaijani": "Azerbaijani",
-            "Bashkir": "Bashkir",
-            "Basque": "Basque",
-            "Bengali": "Bengali",
-            "Bhutani": "Bhutani",
-            "Bihari": "Bihari",
-            "Bislama": "Bislama",
-            "Breton": "Breton",
-            "Bulgarian": "Bulgarian",
-            "Burmese": "Burmese",
-            "Byelorussian (Belarusian)": "Byelorussian (Belarusian)",
-            "Cambodian": "Cambodian",
-            "Catalan": "Catalan",
-            "All Chinese": "All Chinese",
-            "Chinese (Hong-Kong)": "Chinese (Hong-Kong)",
-            "Chinese (PRC)": "Chinese (PRC)",
-            "Chinese (Singapore)": "Chinese (Singapore)",
-            "Chinese (Taiwan)": "Chinese (Taiwan)",
-            "Corsican": "Corsican",
-            "Cree": "Cree",
-            "Chuvash": "Chuvash",
-            "Croatian": "Croatian",
-            "Czech": "Czech",
-            "Danish": "Danish",
-            "All Dutch": "All Dutch",
-            "Dutch (Belgian)": "Dutch (Belgian)",
-            "Dutch (Netherlands)": "Dutch (Netherlands)",
-            "All English": "All English",
-            "English (Australia)": "English (Australia)",
-            "English (Belize)": "English (Belize)",
-            "English (Canada)": "English (Canada)",
-            "English (Ireland)": "English (Ireland)",
-            "English (Jamaica)": "English (Jamaica)",
-            "English (New Zealand)": "English (New Zealand)",
-            "English (Philippines)": "English (Philippines)",
-            "English (South Africa)": "English (South Africa)",
-            "English (Trinidad and Tobago)": "English (Trinidad and Tobago)",
-            "English (United Kingdom)": "English (United Kingdom)",
-            "English (United States)": "English (United States)",
-            "English (Zimbabwe)": "English (Zimbabwe)",
-            "Esperanto": "Esperanto",
-            "Estonian": "Estonian",
-            "Faeroese": "Faeroese",
-            "Farsi (Persian)": "Farsi (Persian)",
-            "Fiji": "Fiji",
-            "Finnish": "Finnish",
-            "All French": "All French",
-            "French (Belgium)": "French (Belgium)",
-            "French (Canada)": "French (Canada)",
-            "French (France)": "French (France)",
-            "French (Luxembourg)": "French (Luxembourg)",
-            "French (Monaco)": "French (Monaco)",
-            "French (Switzerland)": "French (Switzerland)",
-            "Frisian": "Frisian",
-            "Galician": "Galician",
-            "Gaelic (Scottish)": "Gaelic (Scottish)",
-            "Gaelic (Irish)": "Gaelic (Irish)",
-            "Gaelic (Manx)": "Gaelic (Manx)",
-            "Georgian": "Georgian",
-            "All German": "All German",
-            "German (Austria)": "German (Austria)",
-            "German (Germany)": "German (Germany)",
-            "German (Liechtenstein)": "German (Liechtenstein)",
-            "German (Luxembourg)": "German (Luxembourg)",
-            "German (Switzerland)": "German (Switzerland)",
-            "Greek": "Greek",
-            "Greenlandic": "Greenlandic",
-            "Guarani": "Guarani",
-            "Gujarati": "Gujarati",
-            "Haitian Creole": "Haitian Creole",
-            "Hausa": "Hausa",
-            "Hebrew": "Hebrew",
-            "Hindi": "Hindi",
-            "Hungarian": "Hungarian",
-            "Icelandic": "Icelandic",
-            "Ido": "Ido",
-            "Indonesian": "Indonesian",
-            "Interlingua": "Interlingua",
-            "Interlingue": "Interlingue",
-            "Inuktitut": "Inuktitut",
-            "Inupiak": "Inupiak",
-            "Irish": "Irish",
-            "All Italian": "All Italian",
-            "Italian (Italy)": "Italian (Italy)",
-            "Italian (Switzerland)": "Italian (Switzerland)",
-            "Japanese": "Japanese",
-            "Javanese": "Javanese",
-            "Kannada": "Kannada",
-            "Kashmiri": "Kashmiri",
-            "Kazakh": "Kazakh",
-            "Kinyarwanda (Ruanda)": "Kinyarwanda (Ruanda)",
-            "Kirghiz": "Kirghiz",
-            "Kirundi (Rundi)": "Kirundi (Rundi)",
-            "All Korean": "All Korean",
-            "Korean (North Korea)": "Korean (North Korea)",
-            "Korean (South Korea)": "Korean (South Korea)",
-            "Kurdish": "Kurdish",
-            "Laothian": "Laothian",
-            "Latin": "Latin",
-            "Latvian (Lettish)": "Latvian (Lettish)",
-            "Limburgish (Limburger)": "Limburgish (Limburger)",
-            "Lingala": "Lingala",
-            "Lithuanian": "Lithuanian",
-            "Macedonian": "Macedonian",
-            "Malagasy": "Malagasy",
-            "Malay": "Malay",
-            "Malayalam": "Malayalam",
-            "Maltese": "Maltese",
-            "Maori": "Maori",
-            "Marathi": "Marathi",
-            "Moldavian": "Moldavian",
-            "Mongolian": "Mongolian",
-            "Nauru": "Nauru",
-            "Nepali": "Nepali",
-            "Norwegian": "Norwegian",
-            "Norwegian (Bokmal)": "Norwegian (Bokmal)",
-            "Norwegian (Nynorsk)": "Norwegian (Nynorsk)",
-            "Occitan": "Occitan",
-            "Oriya": "Oriya",
-            "Oromo (Afaan Oromo)": "Oromo (Afaan Oromo)",
-            "Pashto (Pushto)": "Pashto (Pushto)",
-            "Polish": "Polish",
-            "All Portuguese": "All Portuguese",
-            "Portuguese (Portugal)": "Portuguese (Portugal)",
-            "Portuguese (Brazil)": "Portuguese (Brazil)",
-            "All Punjabi": "All Punjabi",
-            "Punjabi (India)": "Punjabi (India)",
-            "Punjabi (Pakistan)": "Punjabi (Pakistan)",
-            "Quechua": "Quechua",
-            "Rhaeto-Romance": "Rhaeto-Romance",
-            "All Romanian": "All Romanian",
-            "Romanian (Romania)": "Romanian (Romania)",
-            "Romanian (Moldavia)": "Romanian (Moldavia)",
-            "All Russian": "All Russian",
-            "Russian (Russia)": "Russian (Russia)",
-            "Russian (Moldavia)": "Russian (Moldavia)",
-            "Samoan": "Samoan",
-            "Sangro": "Sangro",
-            "Sanskrit": "Sanskrit",
-            "Serbian": "Serbian",
-            "Serbo-Croatian": "Serbo-Croatian",
-            "Sesotho": "Sesotho",
-            "Setswana": "Setswana",
-            "Shona": "Shona",
-            "Sichuan Yi": "Sichuan Yi",
-            "Sindhi": "Sindhi",
-            "Sinhalese": "Sinhalese",
-            "Siswati": "Siswati",
-            "Slovak": "Slovak",
-            "Slovenian": "Slovenian",
-            "Somali": "Somali",
-            "All Spanish": "All Spanish",
-            "Spanish (Argentina)": "Spanish (Argentina)",
-            "Spanish (Bolivia)": "Spanish (Bolivia)",
-            "Spanish (Chile)": "Spanish (Chile)",
-            "Spanish (Colombia)": "Spanish (Colombia)",
-            "Spanish (Costa Rica)": "Spanish (Costa Rica)",
-            "Spanish (Dominican Republic)": "Spanish (Dominican Republic)",
-            "Spanish (Ecuador)": "Spanish (Ecuador)",
-            "Spanish (Al Salvador)": "Spanish (Al Salvador)",
-            "Spanish (Guatemala)": "Spanish (Guatemala)",
-            "Spanish (Honduras)": "Spanish (Honduras)",
-            "Spanish (Mexico)": "Spanish (Mexico)",
-            "Spanish (Nicaragua)": "Spanish (Nicaragua)",
-            "Spanish (Panama)": "Spanish (Panama)",
-            "Spanish (Paraguay)": "Spanish (Paraguay)",
-            "Spanish (Peru)": "Spanish (Peru)",
-            "Spanish (Puerto Rico)": "Spanish (Puerto Rico)",
-            "Spanish (Spain)": "Spanish (Spain)",
-            "Spanish (Uruguay)": "Spanish (Uruguay)",
-            "Spanish (Venezuela)": "Spanish (Venezuela)",
-            "Sundanese": "Sundanese",
-            "Swahili (Kiswahili)": "Swahili (Kiswahili)",
-            "All Swedish": "All Swedish",
-            "Swedish (Finland)": "Swedish (Finland)",
-            "Swedish (Sweden)": "Swedish (Sweden)",
-            "Tagalog": "Tagalog",
-            "Tajik": "Tajik",
-            "Tamil": "Tamil",
-            "Tatar": "Tatar",
-            "Telugu": "Telugu",
-            "Thai": "Thai",
-            "Tibetan": "Tibetan",
-            "Tigrinya": "Tigrinya",
-            "Tonga": "Tonga",
-            "Tsonga": "Tsonga",
-            "Turkish": "Turkish",
-            "Turkmen": "Turkmen",
-            "Twi": "Twi",
-            "Uighur": "Uighur",
-            "Ukrainian": "Ukrainian",
-            "Urdu": "Urdu",
-            "Uzbek": "Uzbek",
-            "Vietnamese": "Vietnamese",
-            "Volapük": "Volapük",
-            "Wallon": "Wallon",
-            "Welsh": "Welsh",
-            "Wolof": "Wolof",
-            "Xhosa": "Xhosa",
-            "Yiddish": "Yiddish",
-            "Yoruba": "Yoruba",
-            "Zulu": "Zulu"
+            "ab":"Abkhazian",
+            "aa":"Afar",
+            "af":"Afrikaans",
+            "sq":"Albanian",
+            "am":"Amharic",
+            "ar":"Arabic",
+            "ar-dz":"Arabic (Algeria)",
+            "ar-bh":"Arabic (Bahrain)",
+            "ar-eg":"Arabic (Egypt)",
+            "ar-iq":"Arabic (Iraq)",
+            "ar-jo":"Arabic (Jordan)",
+            "ar-kw":"Arabic (Kuwait)",
+            "ar-lb":"Arabic (Lebanon)",
+            "ar-ly":"Arabic (Libya)",
+            "ar-ma":"Arabic (Morocco)",
+            "ar-om":"Arabic (Oman)",
+            "ar-ps":"Arabic (Palestine)",
+            "ar-qa":"Arabic (Qatar)",
+            "ar-sa":"Arabic (Saudi Arabia)",
+            "ar-sy":"Arabic (Syria)",
+            "ar-tn":"Arabic (Tunisia)",
+            "ar-ae":"Arabic (United Arab Emirates)",
+            "ar-ye":"Arabic (Yemen)",
+            "an":"Aragonese",
+            "hy":"Armenian",
+            "as":"Assamese",
+            "ast":"Asturian",
+            "ay":"Aymara",
+            "az":"Azerbaijani",
+            "ba":"Bashkir",
+            "eu":"Basque",
+            "bn":"Bengali",
+            "dz":"Bhutani",
+            "bh":"Bihari",
+            "bi":"Bislama",
+            "br":"Breton",
+            "bg":"Bulgarian",
+            "my":"Burmese",
+            "be":"Byelorussian (Belarusian)",
+            "km":"Cambodian",
+            "ca":"Catalan",
+            "zh":"Chinese",
+            "zh-hk":"Chinese (Hong-Kong)",
+            "zh-cn":"Chinese (PRC)",
+            "zh-sg":"Chinese (Singapore)",
+            "zh-tw":"Chinese (Taiwan)",
+            "co":"Corsican",
+            "cr":"Cree",
+            "cv":"Chuvash",
+            "hr":"Croatian",
+            "cs":"Czech",
+            "da":"Danish",
+            "nl":"Dutch",
+            "nl-be":"Dutch (Belgian)",
+            "nl-nl":"Dutch (Netherlands)",
+            "en":"English",
+            "en-au":"English (Australia)",
+            "en-bz":"English (Belize)",
+            "en-ca":"English (Canada)",
+            "en-ie":"English (Ireland)",
+            "en-jm":"English (Jamaica)",
+            "en-nz":"English (New Zealand)",
+            "en-ph":"English (Philippines)",
+            "en-za":"English (South Africa)",
+            "en-tt":"English (Trinidad and Tobago)",
+            "en-gb":"English (United Kingdom)",
+            "en-us":"English (United States)",
+            "en-zw":"English (Zimbabwe)",
+            "eo":"Esperanto",
+            "et":"Estonian",
+            "fo":"Faeroese",
+            "fa":"Farsi (Persian)",
+            "fj":"Fiji",
+            "fi":"Finnish",
+            "fr":"French",
+            "fr-be":"French (Belgium)",
+            "fr-ca":"French (Canada)",
+            "fr-fr":"French (France)",
+            "fr-lu":"French (Luxembourg)",
+            "fr-mc":"French (Monaco)",
+            "fr-ch":"French (Switzerland)",
+            "fy":"Frisian",
+            "gl":"Galician",
+            "gd":"Gaelic (Scottish)",
+            "gd-ie":"Gaelic (Irish)",
+            "gv":"Gaelic (Manx)",
+            "ka":"Georgian",
+            "de":"German",
+            "de-at":"German (Austria)",
+            "de-de":"German (Germany)",
+            "de-li":"German (Liechtenstein)",
+            "de-lu":"German (Luxembourg)",
+            "de-ch":"German (Switzerland)",
+            "el":"Greek",
+            "kl":"Greenlandic",
+            "gn":"Guarani",
+            "gu":"Gujarati",
+            "ht":"Haitian Creole",
+            "ha":"Hausa",
+            "he|iw":"Hebrew",
+            "hi":"Hindi",
+            "hu":"Hungarian",
+            "is":"Icelandic",
+            "io":"Ido",
+            "id|in":"Indonesian",
+            "ia":"Interlingua",
+            "ie":"Interlingue",
+            "iu":"Inuktitut",
+            "ik":"Inupiak",
+            "ga":"Irish",
+            "it":"Italian",
+            "it-it":"Italian (Italy)",
+            "it-ch":"Italian (Switzerland)",
+            "ja":"Japanese",
+            "jv":"Javanese",
+            "kn":"Kannada",
+            "ks":"Kashmiri",
+            "kk":"Kazakh",
+            "rw":"Kinyarwanda (Ruanda)",
+            "ky":"Kirghiz",
+            "rn":"Kirundi (Rundi)",
+            "ko":"Korean",
+            "ko-kp":"Korean (North Korea)",
+            "ko-kr":"Korean (South Korea)",
+            "ku":"Kurdish",
+            "lo":"Laothian",
+            "la":"Latin",
+            "lv":"Latvian (Lettish)",
+            "li":"Limburgish (Limburger)",
+            "ln":"Lingala",
+            "lt":"Lithuanian",
+            "mk":"Macedonian",
+            "mg":"Malagasy",
+            "ms":"Malay",
+            "ml":"Malayalam",
+            "mt":"Maltese",
+            "mi":"Maori",
+            "mr":"Marathi",
+            "mo":"Moldavian",
+            "mn":"Mongolian",
+            "na":"Nauru",
+            "ne":"Nepali",
+            "no":"Norwegian",
+            "nb":"Norwegian (Bokmal)",
+            "nn":"Norwegian (Nynorsk)",
+            "oc":"Occitan",
+            "or":"Oriya",
+            "om":"Oromo (Afaan Oromo)",
+            "ps":"Pashto (Pushto)",
+            "pl":"Polish",
+            "pt":"Portuguese",
+            "pt-pt":"Portuguese (Portugal)",
+            "pt-bz":"Portuguese (Brazil)",
+            "pa":"Punjabi",
+            "pa-in":"Punjabi (India)",
+            "pa-pk":"Punjabi (Pakistan)",
+            "qu":"Quechua",
+            "rm":"Rhaeto-Romance",
+            "ro":"Romanian",
+            "ro-ro":"Romanian (Romania)",
+            "ro-mo":"Romanian (Moldavia)",
+            "ru":"Russian",
+            "ru-ru":"Russian (Russia)",
+            "ru-mo":"Russian (Moldavia)",
+            "sm":"Samoan",
+            "sg":"Sangro",
+            "sa":"Sanskrit",
+            "sr":"Serbian",
+            "sh":"Serbo-Croatian",
+            "st":"Sesotho",
+            "tn":"Setswana",
+            "sn":"Shona",
+            "ii":"Sichuan Yi",
+            "sd":"Sindhi",
+            "si":"Sinhalese",
+            "ss":"Siswati",
+            "sk":"Slovak",
+            "sl":"Slovenian",
+            "so":"Somali",
+            "es":"Spanish",
+            "es-ar":"Spanish (Argentina)",
+            "es-bo":"Spanish (Bolivia)",
+            "es-cl":"Spanish (Chile)",
+            "es-co":"Spanish (Colombia)",
+            "es-cr":"Spanish (Costa Rica)",
+            "es-do":"Spanish (Dominican Republic)",
+            "es-ec":"Spanish (Ecuador)",
+            "es-sv":"Spanish (Al Salvador)",
+            "es-gt":"Spanish (Guatemala)",
+            "es-hn":"Spanish (Honduras)",
+            "es-mx":"Spanish (Mexico)",
+            "es-ni":"Spanish (Nicaragua)",
+            "es-pa":"Spanish (Panama)",
+            "es-py":"Spanish (Paraguay)",
+            "es-pe":"Spanish (Peru)",
+            "es-pr":"Spanish (Puerto Rico)",
+            "es-es":"Spanish (Spain)",
+            "es-uy":"Spanish (Uruguay)",
+            "es-ve":"Spanish (Venezuela)",
+            "su":"Sundanese",
+            "sw":"Swahili (Kiswahili)",
+            "sv":"Swedish",
+            "sv-fi":"Swedish (Finland)",
+            "sv-sv":"Swedish (Sweden)",
+            "tl":"Tagalog",
+            "tg":"Tajik",
+            "ta":"Tamil",
+            "tt":"Tatar",
+            "te":"Telugu",
+            "th":"Thai",
+            "bo":"Tibetan",
+            "ti":"Tigrinya",
+            "to":"Tonga",
+            "ts":"Tsonga",
+            "tr":"Turkish",
+            "tk":"Turkmen",
+            "tw":"Twi",
+            "ug":"Uighur",
+            "uk":"Ukrainian",
+            "ur":"Urdu",
+            "uz":"Uzbek",
+            "vi":"Vietnamese",
+            "vo":"Volapük",
+            "wa":"Wallon",
+            "cy":"Welsh",
+            "wo":"Wolof",
+            "xh":"Xhosa",
+            "yi":"Yiddish",
+            "yo":"Yoruba",
+            "zu":"Zulu",
         },
     },
     connection: {
@@ -3154,6 +3159,12 @@ const staticList = {
         }
     }
 };
+
+_.map(staticList.device.browser_language,(value, key)=>{
+    browser_language[key] = value;
+})
+
+staticList.device.browser_language = browser_language;
 
 export default {
     conjunctions: {
@@ -3243,7 +3254,7 @@ export default {
                     label: 'Browser',
                     type: 'text_one',
                 },
-                browser_language: {
+                language: {
                     label: 'Browser Language',
                     type: 'select',
                     listValues: staticList.device.browser_language,
@@ -3252,14 +3263,14 @@ export default {
                     label: 'Browser Version',
                     type: 'text',
                 },
-                display_width: {
-                    label: 'Display Width',
-                    type: 'text_two',
-                },
-                display_height: {
-                    label: 'Display Height',
-                    type: 'text_two',
-                },
+                // display_width: {
+                //     label: 'Display Width',
+                //     type: 'text_two',
+                // },
+                // display_height: {
+                //     label: 'Display Height',
+                //     type: 'text_two',
+                // },
             }
         },
         connection: {
@@ -3280,13 +3291,14 @@ export default {
                     type: 'text_one',
                 },
                 referrer: {
+                    text: 'referrer',
                     label: 'Referrer',
                     type: 'text_one',
                 },
-                current_url: {
-                    label: 'Current URL',
-                    type: 'text_one',
-                },
+                // current_url: {
+                //     label: 'Current URL',
+                //     type: 'text_one',
+                // },
                 isp: {
                     label: 'ISP',
                     type: 'text_one',
@@ -3297,35 +3309,35 @@ export default {
                 },
             }
         },
-        conversion_cap: {
-            label: 'Conversion Cap',
-            type: '!struct',
-            subfields: {
-                current_visitor: {
-                    label: 'Current Visitor',
-                    type: 'number',
-                },
-                globally_on_offer: {
-                    label: 'Globally on Offer',
-                    type: 'number',
-                },
-            }
-        },
-        quantity: {
-            label: 'Quantity',
-            type: '!struct',
-            subfields: {
-                number_of_visitors: {
-                    label: 'Number of Visitors',
-                    type: 'number',
-                },
-                number_of_visitors_today: {
-                    label: 'Number of Visitors Today',
-                    type: 'number',
-                },
-
-            }
-        },
+        // conversion_cap: {
+        //     label: 'Conversion Cap',
+        //     type: '!struct',
+        //     subfields: {
+        //         current_visitor: {
+        //             label: 'Current Visitor',
+        //             type: 'number',
+        //         },
+        //         globally_on_offer: {
+        //             label: 'Globally on Offer',
+        //             type: 'number',
+        //         },
+        //     }
+        // },
+        // quantity: {
+        //     label: 'Quantity',
+        //     type: '!struct',
+        //     subfields: {
+        //         number_of_visitors: {
+        //             label: 'Number of Visitors',
+        //             type: 'number',
+        //         },
+        //         number_of_visitors_today: {
+        //             label: 'Number of Visitors Today',
+        //             type: 'number',
+        //         },
+        //
+        //     }
+        // },
         time: {
             label: 'Time',
             type: '!struct',
@@ -3333,14 +3345,14 @@ export default {
                 date: {
                     label: 'Date',
                     type: 'date',
-                    operators: ['greater', 'less'],
-                    defaultOperator: 'less',
+                    operators: ['date_greater', 'date_less'],
+                    defaultOperator: 'date_less',
                 },
                 time: {
                     label: 'Time',
                     type: 'time',
-                    operators: ['greater_or_equal', 'less_or_equal', 'between'],
-                    defaultOperator: 'between',
+                    operators: ['time_greater_or_equal', 'time_less_or_equal', 'time_between'],
+                    defaultOperator: 'time_between',
                     widgets: {
                         time: {
                             opProps: {
@@ -3358,10 +3370,9 @@ export default {
                         },
                     },
                 },
-                datetime2: {
+                datetime: {
                     label: 'Date and Time',
                     type: 'datetime',
-
                 },
 
             }
@@ -3378,10 +3389,10 @@ export default {
                     label: 'Buffer Field',
                     type: 'text_custom_field_two'
                 },
-                visitor_tags: {
-                    label: 'Visitors Tags',
-                    type: 'text_one'
-                },
+                // visitor_tags: {
+                //     label: 'Visitors Tags',
+                //     type: 'text_one'
+                // },
                 trafficsource_name: {
                     label: 'Traffic Source',
                     type: 'trafficsource_name_text_one',
@@ -3558,6 +3569,8 @@ export default {
             widgets: {
                 date: {
                     operators: [
+                        "date_greater",
+                        "date_less",
                         "equal",
                         "not_equal",
                         "less",
@@ -3580,9 +3593,12 @@ export default {
                         "not_equal",
                         "less",
                         "less_or_equal",
+                        "time_less_or_equal",
                         "greater",
                         "greater_or_equal",
+                        "time_greater_or_equal",
                         "between",
+                        "time_between",
                         "not_between",
                         "is_empty",
                         "is_not_empty",
@@ -3594,16 +3610,12 @@ export default {
             widgets: {
                 datetime: {
                     operators: [
-                        // "equal",
-                        // "not_equal",
-                        "less",
-                        "less_or_equal",
-                        "greater",
-                        "greater_or_equal",
-                        "between",
-                        "not_between",
-                        // "is_empty",
-                        // "is_not_empty",
+                        "datetime_less",
+                        "datetime_less_or_equal",
+                        "datetime_greater",
+                        "datetime_greater_or_equal",
+                        "datetime_between",
+                        "datetime_not_between",
                     ],
                     opProps: {
                         between: {
@@ -3683,7 +3695,7 @@ export default {
             labelForFormat: '==',
             reversedOp: 'not_equal',
             formatOp: (field, op, value, valueSrc, valueType, opDef, operatorOptions, isForDisplay) => {
-                return `"{${field.replace(".","-")}}" == ${value}`;
+                return `strtolower("{${field.replace(".", "-")}}") == strtolower(${value})`;
             },
         },
         not_equal: {
@@ -3691,7 +3703,7 @@ export default {
             labelForFormat: '!=',
             reversedOp: 'equal',
             formatOp: (field, op, value, valueSrc, valueType, opDef, operatorOptions, isForDisplay) => {
-                return `"{${field.replace(".","-")}}" != ${value}`;
+                return `strtolower("{${field.replace(".", "-")}}") != strtolower(${value})`;
             },
         },
 
@@ -3700,7 +3712,7 @@ export default {
             labelForFormat: '!=',
             reversedOp: 'does_not_contain',
             formatOp: (field, op, value, valueSrc, valueType, opDef, operatorOptions, isForDisplay) => {
-                return `strpos("{${field.replace(".","-")}}"comma ${value}) !== false`;
+                return `stripos("{${field.replace(".", "-")}}"comma ${value}) !== false`;
             },
         },
         does_not_contain: {
@@ -3708,7 +3720,7 @@ export default {
             labelForFormat: '!=',
             reversedOp: 'contains',
             formatOp: (field, op, value, valueSrc, valueType, opDef, operatorOptions, isForDisplay) => {
-                return `strpos("{${field.replace(".","-")}}"comma ${value}) === false`;
+                return `stripos("{${field.replace(".", "-")}}"comma ${value}) === false`;
             },
         },
 
@@ -3734,7 +3746,7 @@ export default {
             labelForFormat: '!=',
             reversedOp: 'does_not_contain',
             formatOp: (field, op, value, valueSrc, valueType, opDef, operatorOptions, isForDisplay) => {
-                return `strpos("{trafficsource-name}"comma ${value}) !== false`;
+                return `stripos("{trafficsource-name}"comma ${value}) !== false`;
             },
         },
         does_not_contain_trafficsource_name: {
@@ -3742,7 +3754,7 @@ export default {
             labelForFormat: '!=',
             reversedOp: 'contains',
             formatOp: (field, op, value, valueSrc, valueType, opDef, operatorOptions, isForDisplay) => {
-                return `strpos("{trafficsource-name}"comma ${value}) === false`;
+                return `stripos("{trafficsource-name}"comma ${value}) === false`;
             },
         },
 
@@ -3756,7 +3768,7 @@ export default {
             formatOp: (field, op, values, valueSrc, valueType, opDef, operatorOptions, isForDisplay) => {
                 let val1 = values.first();
                 let val2 = values.get(1);
-                return `("{${field.replace(".","-")}}" > ${val1}) && ("{${field.replace(".","-")}}" < ${val2})`;
+                return `ip2long("{${field.replace(".", "-")}}") > ip2long(${val1}) && ip2long("{${field.replace(".", "-")}}") < ip2long(${val2})`;
             },
         },
 
@@ -3770,7 +3782,7 @@ export default {
             formatOp: (field, op, values, valueSrc, valueType, opDef, operatorOptions, isForDisplay) => {
                 let val1 = values.first();
                 let val2 = values.get(1);
-                return `"{${field.split(".")[1]}-${val1.replace(/"/g,"")}}" === ${val2}`;
+                return `"{${field.split(".")[1]}-${val1.replace(/"/g, "")}}" === ${val2}`;
             },
         },
         custom_is_not: {
@@ -3783,7 +3795,7 @@ export default {
             formatOp: (field, op, values, valueSrc, valueType, opDef, operatorOptions, isForDisplay) => {
                 let val1 = values.first();
                 let val2 = values.get(1);
-                return `"{${field.split(".")[1]}-${val1.replace(/"/g,"")}}" !== ${val2}`;
+                return `"{${field.split(".")[1]}-${val1.replace(/"/g, "")}}" !== ${val2}`;
             },
         },
         custom_contains: {
@@ -3796,7 +3808,7 @@ export default {
             formatOp: (field, op, values, valueSrc, valueType, opDef, operatorOptions, isForDisplay) => {
                 let val1 = values.first();
                 let val2 = values.get(1);
-                return `strpos("{${field.split(".")[1]}-${val1.replace(/"/g,"")}}")comma ${val2}) !== false`;
+                return `stripos("{${field.split(".")[1]}-${val1.replace(/"/g, "")}}")comma ${val2}) !== false`;
             },
         },
         custom_does_not_contain: {
@@ -3809,7 +3821,7 @@ export default {
             formatOp: (field, op, values, valueSrc, valueType, opDef, operatorOptions, isForDisplay) => {
                 let val1 = values.first();
                 let val2 = values.get(1);
-                return `strpos("{${field.split(".")[1]}-${val1.replace(/"/g,"")}}")comma ${val2}) === false`;
+                return `stripos("{${field.split(".")[1]}-${val1.replace(/"/g, "")}}")comma ${val2}) === false`;
             },
         },
 
@@ -3823,7 +3835,7 @@ export default {
             formatOp: (field, op, values, valueSrc, valueType, opDef, operatorOptions, isForDisplay) => {
                 let val1 = values.first();
                 let val2 = values.get(1);
-                return `"{${field.split(".")[1]}-${val1.replace(/"/g,"")}}" === ${val2}`;
+                return `"{${field.split(".")[1]}-${val1.replace(/"/g, "")}}" === ${val2}`;
             },
         },
         custom_is_not_two: {
@@ -3836,7 +3848,7 @@ export default {
             formatOp: (field, op, values, valueSrc, valueType, opDef, operatorOptions, isForDisplay) => {
                 let val1 = values.first();
                 let val2 = values.get(1);
-                return `"{${field.split(".")[1]}-${val1.replace(/"/g,"")}}" !== ${val2}`;
+                return `"{${field.split(".")[1]}-${val1.replace(/"/g, "")}}" !== ${val2}`;
             },
         },
         custom_contains_two: {
@@ -3849,7 +3861,7 @@ export default {
             formatOp: (field, op, values, valueSrc, valueType, opDef, operatorOptions, isForDisplay) => {
                 let val1 = values.first();
                 let val2 = values.get(1);
-                return `strpos("{${field.split(".")[1]}-${val1.replace(/"/g,"")}}")comma ${val2}) !== false`;
+                return `stripos("{${field.split(".")[1]}-${val1.replace(/"/g, "")}}")comma ${val2}) !== false`;
             },
         },
         custom_does_not_contain_two: {
@@ -3862,7 +3874,7 @@ export default {
             formatOp: (field, op, values, valueSrc, valueType, opDef, operatorOptions, isForDisplay) => {
                 let val1 = values.first();
                 let val2 = values.get(1);
-                return `strpos("{${field.split(".")[1]}-${val1.replace(/"/g,"")}}")comma ${val2}) === false`;
+                return `stripos("{${field.split(".")[1]}-${val1.replace(/"/g, "")}}")comma ${val2}) === false`;
             },
         },
 
@@ -3873,9 +3885,9 @@ export default {
             formatOp: (field, op, value) => {
                 value = value.toString().replace(/"/g, "");
                 if (isNaN(value)) {
-                    return `"{${field.replace(".","-")}}" < ${value}`;
+                    return `"{${field.replace(".", "-")}}" < ${value}`;
                 } else {
-                    return `"{${field.replace(".","-")}}" < ${value}`;
+                    return `"{${field.replace(".", "-")}}" < ${value}`;
                 }
             },
         },
@@ -3886,9 +3898,9 @@ export default {
             formatOp: (field, op, value) => {
                 value = value.toString().replace(/"/g, "");
                 if (isNaN(value)) {
-                    return `"{${field.replace(".","-")}}" <= ${value}`;
+                    return `"{${field.replace(".", "-")}}" <= ${value}`;
                 } else {
-                    return `"{${field.replace(".","-")}}" <= ${value}`;
+                    return `"{${field.replace(".", "-")}}" <= ${value}`;
                 }
             },
         },
@@ -3899,9 +3911,9 @@ export default {
             formatOp: (field, op, value) => {
                 value = value.toString().replace(/"/g, "");
                 if (isNaN(value)) {
-                    return `"{${field.replace(".","-")}}" > ${value}`;
+                    return `"{${field.replace(".", "-")}}" > ${value}`;
                 } else {
-                    return `"{${field.replace(".","-")}}" > ${value}`;
+                    return `"{${field.replace(".", "-")}}" > ${value}`;
                 }
             },
         },
@@ -3912,9 +3924,9 @@ export default {
             formatOp: (field, op, value) => {
                 value = value.toString().replace(/"/g, "");
                 if (isNaN(value)) {
-                    return `"{${field.replace(".","-")}}" >= ${value}`;
+                    return `"{${field.replace(".", "-")}}" >= ${value}`;
                 } else {
-                    return `"{${field.replace(".","-")}}" >= ${value}`;
+                    return `"{${field.replace(".", "-")}}" >= ${value}`;
                 }
             },
         },
@@ -3926,9 +3938,9 @@ export default {
                 let valFrom = values.first();
                 let valTo = values.get(1);
                 if (isForDisplay)
-                    return `"{${field.replace(".","-")}}" >= ${valFrom} AND "{${field.replace(".","-")}}" <= ${valTo}`;
+                    return `"{${field.replace(".", "-")}}" >= ${valFrom} AND "{${field.replace(".", "-")}}" <= ${valTo}`;
                 else
-                    return `"{${field.replace(".","-")}}" >= ${valFrom} && "{${field.replace(".","-")}}" <= ${valTo}`;
+                    return `"{${field.replace(".", "-")}}" >= ${valFrom} && "{${field.replace(".", "-")}}" <= ${valTo}`;
             },
             valueLabels: [
                 'Value from',
@@ -3961,7 +3973,7 @@ export default {
             cardinality: 0,
             reversedOp: 'is_not_empty',
             formatOp: (field, op, value, valueSrc, valueType, opDef, operatorOptions, isForDisplay) => {
-                return isForDisplay ? `"{${field.replace(".","-")}}" IS EMPTY` : `!${field}`;
+                return isForDisplay ? `"{${field.replace(".", "-")}}" IS EMPTY` : `!${field}`;
             },
         },
         is_not_empty: {
@@ -3978,7 +3990,7 @@ export default {
             label: 'IS',
             labelForFormat: '==',
             formatOp: (field, op, value, valueSrc, valueType, opDef, operatorOptions, isForDisplay) => {
-                return `"{${field.replace(".","-")}}" == ${value}`;
+                return `"{${field.replace(".", "-")}}" == ${value}`;
             },
             reversedOp: 'select_not_equals',
         },
@@ -3986,7 +3998,7 @@ export default {
             label: 'IS NOT',
             labelForFormat: '!=',
             formatOp: (field, op, value, valueSrc, valueType, opDef, operatorOptions, isForDisplay) => {
-                return `"{${field}}" != ${value}`;
+                return `"{${field.replace(".", "-")}}" != ${value}`;
             },
             reversedOp: 'select_equals',
         },
@@ -3995,7 +4007,7 @@ export default {
             labelForFormat: 'IN',
             formatOp: (field, op, values, valueSrc, valueType, opDef, operatorOptions, isForDisplay) => {
                 if (valueSrc == 'value')
-                    return `"{${field}}" IN (${values.join(', ')})`;
+                    return `"{${field.replace(".", "-")}}" IN (${values.join(', ')})`;
                 else {
                     const valueStr = values.join('comma');
                     const fieldStr = field.split('.');
@@ -4004,11 +4016,12 @@ export default {
                     if (fieldStr.length > 1) {
                         displayStr = `in_array( "{${fieldStr[0]}-${fieldStr[1]}}"comma [ ${valueStr} ] )`;
                     } else {
-                        displayStr = `in_array( "{${fieldStr[0].replace(".","-")}}"comma [ ${valueStr} ] )`;
+                        displayStr = `in_array( "{${fieldStr[0].replace(".", "-")}}"comma [ ${valueStr} ] )`;
                     }
                     return displayStr;
                 }
             },
+            reversedOp: 'select_not_any_in',
             reversedOp: 'select_not_any_in',
         },
         select_not_any_in: {
@@ -4016,7 +4029,7 @@ export default {
             labelForFormat: 'NOT IN',
             formatOp: (field, op, values, valueSrc, valueType, opDef, operatorOptions, isForDisplay) => {
                 if (valueSrc == 'value')
-                    return `${field} NOT IN (${values.join(', ')})`;
+                    return `${field.replace(".", "-")} NOT IN (${values.join(', ')})`;
                 else {
                     const valueStr = values.join('comma');
                     const fieldStr = field.split('.');
@@ -4025,7 +4038,7 @@ export default {
                     if (fieldStr.length > 1) {
                         displayStr = `!in_array( "{${fieldStr[0]}-${fieldStr[1]}}"comma [ ${valueStr} ] )`;
                     } else {
-                        displayStr = `!in_array( "{${fieldStr[0].replace(".","-")}}"comma [ ${valueStr} ] )`;
+                        displayStr = `!in_array( "{${fieldStr[0].replace(".", "-")}}"comma [ ${valueStr} ] )`;
                     }
                     return displayStr;
                 }
@@ -4037,9 +4050,9 @@ export default {
             labelForFormat: '==',
             formatOp: (field, op, values, valueSrc, valueType, opDef, operatorOptions, isForDisplay) => {
                 if (valueSrc == 'value')
-                    return `"{${field.replace(".","-")}}" == [${values.join(', ')}]`;
+                    return `"{${field.replace(".", "-")}}" == [${values.join(', ')}]`;
                 else
-                    return `"{${field.replace(".","-")}}" == ${values}`;
+                    return `"{${field.replace(".", "-")}}" == ${values}`;
             },
             reversedOp: 'multiselect_not_equals',
         },
@@ -4079,6 +4092,142 @@ export default {
             //         proximity: 2
             //     }
             // }
+        },
+
+        date_less: {
+            label: 'LESS THAN',
+            labelForFormat: '<',
+            reversedOp: 'greater',
+            formatOp: (field, op, value) => {
+                value = value.toString().replace(/"/g, "");
+                return `strtotime(date("Y-m-d")) < strtotime(${value})`;
+
+            },
+        },
+        date_greater: {
+            label: 'GREATER THAN',
+            labelForFormat: '>',
+            reversedOp: 'less_or_equal',
+            formatOp: (field, op, value) => {
+                value = value.toString().replace(/"/g, "");
+                return `strtotime(date("Y-m-d")) > strtotime(${value})`;
+
+            },
+        },
+
+        time_between: {
+            label: 'Between',
+            labelForFormat: 'BETWEEN',
+            cardinality: 2,
+            formatOp: (field, op, values, valueSrcs, valueTypes, opDef, operatorOptions, isForDisplay) => {
+                let valFrom = values.first();
+                let valTo = values.get(1);
+                return `time() >= strtotime(${valFrom}) && time() <= strtotime(${valTo})`;
+            },
+            valueLabels: [
+                'Value from',
+                'Value to'
+            ],
+            textSeparators: [
+                null,
+                'and'
+            ],
+            reversedOp: 'not_between',
+        },
+        time_less_or_equal: {
+            label: '<=',
+            labelForFormat: '<=',
+            reversedOp: 'greater_or_equal',
+            formatOp: (field, op, value) => {
+                value = value.toString().replace(/"/g, "");
+                return `time() <= strtotime("${value}")`;
+            },
+        },
+        time_greater_or_equal: {
+            label: '>=',
+            labelForFormat: '>=',
+            reversedOp: 'less_or_equal',
+            formatOp: (field, op, value) => {
+                value = value.toString().replace(/"/g, "");
+                return `time() >= strtotime("${value}")`;
+            },
+        },
+
+
+        datetime_less: {
+            label: 'LESS THAN',
+            labelForFormat: '<',
+            reversedOp: 'greater',
+            formatOp: (field, op, value) => {
+                value = value.toString().replace(/"/g, "");
+                return `strtotime(date("Y-m-d H:i:s")) < strtotime("${value}")`;
+
+            },
+        },
+        datetime_less_or_equal: {
+            label: '<=',
+            labelForFormat: '<=',
+            reversedOp: 'greater_or_equal',
+            formatOp: (field, op, value) => {
+                value = value.toString().replace(/"/g, "");
+                return `strtotime(date("Y-m-d H:i:s")) <= strtotime("${value}")`;
+            },
+        },
+        datetime_greater: {
+            label: 'GREATER THAN',
+            labelForFormat: '>',
+            reversedOp: 'less_or_equal',
+            formatOp: (field, op, value) => {
+                value = value.toString().replace(/"/g, "");
+                return `strtotime(date("Y-m-d H:i:s")) > strtotime("${value}")`;
+            },
+        },
+        datetime_greater_or_equal: {
+            label: '>=',
+            labelForFormat: '>=',
+            reversedOp: 'less_or_equal',
+            formatOp: (field, op, value) => {
+                value = value.toString().replace(/"/g, "");
+                return `strtotime(date("Y-m-d H:i:s")) >= strtotime("${value}")`;
+            },
+        },
+        datetime_between: {
+            label: 'Between',
+            labelForFormat: 'BETWEEN',
+            cardinality: 2,
+            formatOp: (field, op, values, valueSrcs, valueTypes, opDef, operatorOptions, isForDisplay) => {
+                let valFrom = values.first();
+                let valTo = values.get(1);
+                return `strtotime(date("Y-m-d H:i:s")) >= strtotime("${valFrom}") && strtotime(date("Y-m-d H:i:s")) <= strtotime("${valTo}")`;
+            },
+            valueLabels: [
+                'Value from',
+                'Value to'
+            ],
+            textSeparators: [
+                null,
+                'and'
+            ],
+            reversedOp: 'not_between',
+        },
+        datetime_not_between: {
+            label: 'Not Between',
+            labelForFormat: 'NOT BETWEEN',
+            cardinality: 2,
+            formatOp: (field, op, values, valueSrcs, valueTypes, opDef, operatorOptions, isForDisplay) => {
+                let valFrom = values.first();
+                let valTo = values.get(1);
+                return `strtotime(date("Y-m-d H:i:s")) <= strtotime("${valFrom}") || strtotime(date("Y-m-d H:i:s")) >= strtotime("${valTo}")`;
+            },
+            valueLabels: [
+                'Value from',
+                'Value to'
+            ],
+            textSeparators: [
+                null,
+                'and'
+            ],
+            reversedOp: 'not_between',
         },
     },
     widgets: {

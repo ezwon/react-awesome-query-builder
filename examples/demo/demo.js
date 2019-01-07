@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
 import _ from "lodash";
 import {Query, Builder, Preview, Utils} from 'react-awesome-query-builder';
-
+import {message} from "antd";
 const {queryBuilderFormat, queryString} = Utils;
 
 import config from './config';
+import Highlight from 'react-highlight';
+import {CopyToClipboard} from 'react-copy-to-clipboard';
 
 const stringify = require('json-stringify-safe');
 
@@ -19,6 +21,7 @@ export default class DemoQueryBuilder extends Component {
         const jsonStyle = {backgroundColor: 'darkgrey', margin: '10px', padding: '10px'};
         const children = props.tree.get('children1');
         const conditions = [];
+        let textToDisplay = "";
         let i = 1;
 
         conditions.push(`<?php\n`);
@@ -29,6 +32,12 @@ export default class DemoQueryBuilder extends Component {
         });
 
         conditions.push(`  else{\n    return 1;\n  }\n?>`);
+
+        textToDisplay = conditions.toString()
+            .replace(/,/g, "")
+            .replace(/comma/g, ",")
+            .replace(/undefined/g, "false")
+            .replace(/connection-referrer/g, "referrer");
 
         return (
             <div style={{padding: '10px', maxWidth: '1000px', margin: '0 auto'}}>
@@ -48,7 +57,6 @@ export default class DemoQueryBuilder extends Component {
 
                     <p>Note 3: These rules process sequentially, so a user will go to the lowest numbered route that
                         they match.</p>
-
                     <div className="default-route-block">
                         <h2>Route 1 - Default Route</h2>
                     </div>
@@ -59,12 +67,25 @@ export default class DemoQueryBuilder extends Component {
 
                     {conditions.length > 2 &&
                     (
-                        <pre style={jsonStyle} key={i}>
-                                {conditions.toString().replace(/,/g, "").replace(/comma/g, ",")}
-                            </pre>
+                        <div className="display-box">
+                            <div className="copy-box">
+                                <CopyToClipboard
+                                    onCopy={() => message.success("Code snippet copied!")}
+                                    text={textToDisplay}>
+                                    <button className="ant-btn">COPY CODE</button>
+                                </CopyToClipboard>
+                            </div>
+                            <Highlight language="php">
+                                {textToDisplay}
+                            </Highlight>
+
+                        </div>
                     )
                     }
+
+
                 </div>
+
             </div>
         )
     }
