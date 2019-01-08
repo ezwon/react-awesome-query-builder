@@ -42,21 +42,17 @@ export default class DemoQueryBuilder extends Component {
         return (
             <div style={{padding: '10px', maxWidth: '1000px', margin: '0 auto'}}>
                 <div className="query-builder" style={{position: "relative"}}>
-                    <h2>FunnelFlux Route Builder</h2>
-                    <p>Below is our route builder. Use this to build rules that output code that you can then paste into
-                        a PHP node in FunnelFlux.</p>
+                    <h2 class="title">FunnelFlux Route Builder</h2>
+                    <p>Below is our route builder. Use this to build rules that output code that you can then paste into a PHP node in FunnelFlux.</p>
 
-                    <p>Note 1: A default route 1 is always included and the PHP node will return 1 if no rules match the
-                        user. Your "on done 1" connection in your funnel should <strong>always</strong> exist and go to
-                        a default location. Other rules will go down the "on done X" connections of the same number as
-                        your routes built here.</p>
+                    <p><strong>Note 1:</strong> A default route 1 is always included and the PHP node will return 1 if no rules match the user. Your "on done 1" connection in your funnel should <strong>always</strong> exist and go to a default location. Other rules will go down the "on done X" connections of the same number as your routes built here.</p>
 
-                    <p>Note 2: Some attributes like carrier, ISP, city etc. require manual text entry due to the very
-                        large lists of available options. If you need to add multiple items, just create additional
-                        rules within the route block (or group) with the OR option selected.</p>
+                    <p><strong>Note 2:</strong> Some attributes like carrier, ISP, city etc. require manual text entry due to the very large lists of available options. If you need to add multiple items, just create additional rules within the route block (or group) with the OR option selected.</p>
 
-                    <p>Note 3: These rules process sequentially, so a user will go to the lowest numbered route that
-                        they match.</p>
+                    <p><strong>Note 3:</strong> These rules process sequentially, so a user will go to the lowest numbered route that they match.</p>
+
+                    <p></p>
+
                     <div className="default-route-block">
                         <h2>Route 1 - Default Route</h2>
                     </div>

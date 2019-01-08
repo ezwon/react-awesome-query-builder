@@ -48,6 +48,16 @@ $dropdown-padding: 4px;
     text-align: center;
     font-size: 20px;
     margin: 20px;
+    font-family: "Roboto", Arial, sans-serif;
+  }
+
+  strong{
+    font-weight: 700;
+  }
+
+  .title {
+    font-size: 28px;
+    font-weight: 700;
   }
 
   > p {
@@ -55,6 +65,8 @@ $dropdown-padding: 4px;
     max-width: 1440px;
     padding: 12px !important;
     margin: 0 auto;
+    font-family: "Roboto", Arial, sans-serif;
+    font-size: 14px;
   }
 
   .ant-select-dropdown-menu-item {
@@ -73,24 +85,21 @@ $dropdown-padding: 4px;
 
   .default-route-block {
     border: 1px solid #dddddd;
-    position: absolute;
-    height: 78px;
-    width: calc(100% - 42px);
+    height: 65px;
+    width: 100%;
     z-index: 1;
     background: #fafafa;
-    margin: 20px;
+    margin: 0px 0px 15px 0px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
-    top: 285px;
+    top: 325px;
+    padding: 0px;
   }
 
   > .group-container {
     > .group {
       > .group--children {
-
-        padding-top: 88px;
-
         > .group-container {
           > .group {
             &::before{
@@ -162,6 +171,22 @@ $dropdown-padding: 4px;
       border: 1px solid #dddddd;
     }
   }
+
+  .ant-select-selection--multiple .ant-select-selection__choice__remove{
+    top:2px;
+    right:2px;
+    font-size: 14px !important;
+  }
+
+  .ant-select-selection--multiple .ant-select-selection__choice{
+    padding-left: 7px;
+  }
+
+  .ant-select-sm .ant-select-selection--multiple .ant-select-selection__rendered li{
+    height: 20px;
+    line-height: 18px
+  }
+
   /* END CUSTOM */
 
 }
@@ -224,7 +249,7 @@ $dropdown-padding: 4px;
 
 .group-or-rule-container {
   margin-bottom: 10px;
-  padding-right: 10px;
+  margin-right: 0px;
 }
 
 /******************************************************************************/
@@ -236,7 +261,7 @@ $dropdown-padding: 4px;
 }
 
 .group--children {
-  padding-left: 20px;
+  padding: 0px 10px 0px 10px;
 
   & > .group-or-rule-container > .group-or-rule {
     &:before {
@@ -305,7 +330,7 @@ $dropdown-padding: 4px;
 .group--footer {
   padding: {
     top: 10px;
-    right: 5px;
+    right: 10px;
     bottom: 10px;
     left: 10px;
   }
